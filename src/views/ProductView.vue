@@ -141,9 +141,9 @@ const jsonLd = {
     :json-ld="jsonLd"
   />
 
-  <div class="py-12">
+  <div class="">
     <!-- Hero Section -->
-    <section class="py-20">
+    <section class="py-4 md:py-12">
       <div class="container mx-auto px-6 max-w-6xl text-center">
         <h1
           class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight"

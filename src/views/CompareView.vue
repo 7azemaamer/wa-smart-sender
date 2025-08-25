@@ -132,9 +132,9 @@ const advantages = [
     image="/og/compare.png"
   />
 
-  <div class="py-12">
+  <div class="">
     <!-- Hero Section -->
-    <section class="py-20">
+    <section class="py-4 md:py-12">
       <div class="container mx-auto px-6 max-w-6xl text-center">
         <SectionHeading
           title="لماذا WA Smart Sender هو الأفضل؟"

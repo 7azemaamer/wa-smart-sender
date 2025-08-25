@@ -183,7 +183,7 @@ onMounted(() => {
     type="article"
   />
 
-  <div class="py-8 mt-15">
+  <div class="py-4 md:py-12">
     <!-- Breadcrumbs -->
     <Breadcrumbs />
 

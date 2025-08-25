@@ -326,7 +326,7 @@ const swiperOptions = {
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
           </swiper>
-          
+
           <!-- Custom Navigation Buttons -->
           <button class="swiper-button-prev custom-nav-btn" slot="button-prev">
             <i class="pi pi-chevron-right text-lg"></i>
@@ -456,4 +456,3 @@ const swiperOptions = {
     </section>
   </div>
 </template>
-

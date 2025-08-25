@@ -96,9 +96,9 @@ const faqs = [
     image="/og/faq.png"
   />
 
-  <div class="py-12">
+  <div class="">
     <!-- Hero Section -->
-    <section class="py-20">
+    <section class="py-4 md:py-12">
       <div class="container mx-auto px-6 max-w-4xl text-center">
         <SectionHeading
           title="الأسئلة الشائعة"

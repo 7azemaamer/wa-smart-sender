@@ -12,7 +12,7 @@ import Prose from '@/components/common/Prose.vue'
     image="/og/terms.png"
   />
 
-  <div class="py-12 mt-12">
+  <div class="py-12 ">
     <div class="container mx-auto px-6 max-w-4xl">
       <!-- Header -->
       <div class="text-center mb-16">

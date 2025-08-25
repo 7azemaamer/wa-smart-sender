@@ -42,8 +42,8 @@ const submitForm = async () => {
     image="/og/contact.png"
   />
 
-  <div class="py-12">
-    <section class="py-20">
+  <div class="">
+    <section class="py-4 md:py-12">
       <div class="container mx-auto px-6 max-w-6xl">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <!-- Left Side - Content -->

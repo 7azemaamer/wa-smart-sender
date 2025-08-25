@@ -48,9 +48,9 @@ const pricingFaqs = [
     image="/og/pricing.png"
   />
 
-  <div class="py-12">
+  <div class="">
     <!-- Hero Section -->
-    <section class="py-20">
+    <section class="py-4 md:py-12">
       <div class="container mx-auto px-6 max-w-6xl text-center">
         <SectionHeading
           title="اختر الخطة المناسبة لك"
@@ -94,8 +94,8 @@ const pricingFaqs = [
                   globalCurrency === 'USD'
                     ? '0.25rem'
                     : globalCurrency === 'SAR'
-                    ? 'calc(100% + 0.375rem)'
-                    : 'calc(200% + 0.5rem)'
+                    ? 'calc(-100% + 0.375rem)'
+                    : 'calc(-200% + 0.5rem)'
                 })`,
               }"
             ></div>
@@ -128,7 +128,7 @@ const pricingFaqs = [
     </section>
 
     <!-- Pricing Cards -->
-    <section class="pb-8">
+    <section class="pb-8 pt-6 md:pt-2">
       <div class="container mx-auto px-6 max-w-6xl">
         <!-- Show first 3 plans -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
