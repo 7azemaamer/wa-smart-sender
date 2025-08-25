@@ -1,74 +1,150 @@
 <script setup>
-import AppSEO from '@/components/common/AppSEO.vue'
-import SectionHeading from '@/components/common/SectionHeading.vue'
-import CTAInline from '@/components/common/CTAInline.vue'
+import { ref, computed } from "vue";
+import AppSEO from "@/components/common/AppSEO.vue";
+import SectionHeading from "@/components/common/SectionHeading.vue";
+import CTAInline from "@/components/common/CTAInline.vue";
+
+// ROI Calculator
+const customers = ref(500);
+const orderValue = ref(150);
+const monthlyOrders = ref(2.5);
+
+const calculatedROI = computed(() => {
+  const currentRevenue =
+    customers.value * orderValue.value * monthlyOrders.value;
+  const increasePercent = 35; // Average increase based on case studies
+  const revenueIncrease = currentRevenue * (increasePercent / 100);
+  const marketingSavings = 8000; // Static marketing savings
+  const wasCost = 75; // WAS monthly cost
+  const netReturn = revenueIncrease + marketingSavings - wasCost;
+
+  return {
+    currentRevenue,
+    revenueIncrease,
+    marketingSavings,
+    wasCost,
+    netReturn,
+  };
+});
 
 const caseStudies = [
   {
     id: 1,
-    title: 'متجر إلكتروني يزيد مبيعاته 35% بحملة مخصّصة',
-    company: 'متجر الأزياء العصرية',
-    industry: 'أزياء وموضة',
-    challenge: 'انخفاض معدلات التحويل وضعف التفاعل مع العملاء',
-    solution: 'استخدام الإرسال الجماعي المخصص والردود التلقائية الذكية',
+    title: "متجر إلكتروني يزيد مبيعاته 35% بحملة مخصّصة",
+    company: "متجر الأزياء العصرية",
+    industry: "أزياء وموضة",
+    challenge: "انخفاض معدلات التحويل وضعف التفاعل مع العملاء",
+    solution: "استخدام الإرسال الجماعي المخصص والردود التلقائية الذكية",
     results: {
-      metric1: { label: 'زيادة المبيعات', value: '+35%', color: 'text-green-600' },
-      metric2: { label: 'تحسن التفاعل', value: '+60%', color: 'text-blue-600' },
-      metric3: { label: 'توفير الوقت', value: '15 ساعة/أسبوع', color: 'text-purple-600' }
+      metric1: {
+        label: "زيادة المبيعات",
+        value: "+35%",
+        color: "text-green-600",
+      },
+      metric2: {
+        label: "تحسن التفاعل",
+        value: "+60%",
+        color: "text-[#489f91]",
+      },
+      metric3: {
+        label: "توفير الوقت",
+        value: "15 ساعة/أسبوع",
+        color: "text-purple-600",
+      },
     },
-    duration: '3 أشهر',
-    image: '/case-studies/fashion-store.jpg',
-    featured: true
+    duration: "3 أشهر",
+    image: "/case-studies/fashion-store.jpg",
+    featured: true,
   },
   {
     id: 2,
-    title: 'شركة عقارات تضاعف عدد العملاء المتوقعين',
-    company: 'العقارات المتميزة',
-    industry: 'عقارات',
-    challenge: 'صعوبة في الوصول للعملاء المهتمين والمتابعة الدورية',
-    solution: 'حملات استهداف جغرافي وردود تلقائية لاستفسارات العقارات',
+    title: "شركة عقارات تضاعف عدد العملاء المتوقعين",
+    company: "العقارات المتميزة",
+    industry: "عقارات",
+    challenge: "صعوبة في الوصول للعملاء المهتمين والمتابعة الدورية",
+    solution: "حملات استهداف جغرافي وردود تلقائية لاستفسارات العقارات",
     results: {
-      metric1: { label: 'زيادة العملاء المحتملين', value: '+120%', color: 'text-green-600' },
-      metric2: { label: 'تحسن معدل الرد', value: '+85%', color: 'text-blue-600' },
-      metric3: { label: 'تسريع عملية البيع', value: '40%', color: 'text-orange-600' }
+      metric1: {
+        label: "زيادة العملاء المحتملين",
+        value: "+120%",
+        color: "text-green-600",
+      },
+      metric2: {
+        label: "تحسن معدل الرد",
+        value: "+85%",
+        color: "text-[#489f91]",
+      },
+      metric3: {
+        label: "تسريع عملية البيع",
+        value: "40%",
+        color: "text-orange-600",
+      },
     },
-    duration: '4 أشهر',
-    image: '/case-studies/real-estate.jpg',
-    featured: true
+    duration: "4 أشهر",
+    image: "/case-studies/real-estate.jpg",
+    featured: true,
   },
   {
     id: 3,
-    title: 'مطعم يحقق رقماً قياسياً في طلبات التوصيل',
-    company: 'مطعم الأصالة',
-    industry: 'مطاعم وأغذية',
-    challenge: 'منافسة شديدة في التوصيل وحاجة لبناء قاعدة عملاء مخلصين',
-    solution: 'عروض ترويجية مخصصة وتذكيرات للطلبات الدورية',
+    title: "مطعم يحقق رقماً قياسياً في طلبات التوصيل",
+    company: "مطعم الأصالة",
+    industry: "مطاعم وأغذية",
+    challenge: "منافسة شديدة في التوصيل وحاجة لبناء قاعدة عملاء مخلصين",
+    solution: "عروض ترويجية مخصصة وتذكيرات للطلبات الدورية",
     results: {
-      metric1: { label: 'زيادة طلبات التوصيل', value: '+45%', color: 'text-green-600' },
-      metric2: { label: 'عودة العملاء', value: '+70%', color: 'text-blue-600' },
-      metric3: { label: 'توفير تكلفة إعلانات', value: '25%', color: 'text-purple-600' }
+      metric1: {
+        label: "زيادة طلبات التوصيل",
+        value: "+45%",
+        color: "text-green-600",
+      },
+      metric2: {
+        label: "عودة العملاء",
+        value: "+70%",
+        color: "text-[#489f91]",
+      },
+      metric3: {
+        label: "توفير تكلفة إعلانات",
+        value: "25%",
+        color: "text-purple-600",
+      },
     },
-    duration: '2 أشهر',
-    image: '/case-studies/restaurant.jpg',
-    featured: false
-  }
-]
+    duration: "2 أشهر",
+    image: "/case-studies/restaurant.jpg",
+    featured: false,
+  },
+];
 
 const industries = [
-  { name: 'التجارة الإلكترونية', count: 45, icon: 'pi pi-shopping-cart' },
-  { name: 'العقارات', count: 32, icon: 'pi pi-home' },
-  { name: 'المطاعم والأغذية', count: 28, icon: 'pi pi-shopping-bag' },
-  { name: 'الخدمات التعليمية', count: 22, icon: 'pi pi-book' },
-  { name: 'الصحة والجمال', count: 18, icon: 'pi pi-heart' },
-  { name: 'الخدمات المالية', count: 15, icon: 'pi pi-credit-card' }
-]
+  { name: "التجارة الإلكترونية", count: 45, icon: "pi pi-shopping-cart" },
+  { name: "العقارات", count: 32, icon: "pi pi-home" },
+  { name: "المطاعم والأغذية", count: 28, icon: "pi pi-shopping-bag" },
+  { name: "الخدمات التعليمية", count: 22, icon: "pi pi-book" },
+  { name: "الصحة والجمال", count: 18, icon: "pi pi-heart" },
+  { name: "الخدمات المالية", count: 15, icon: "pi pi-credit-card" },
+];
 
 const successMetrics = [
-  { label: 'متوسط زيادة المبيعات', value: '42%', description: 'نمو في الإيرادات خلال 3 أشهر' },
-  { label: 'تحسن التفاعل', value: '65%', description: 'زيادة في معدلات الرد والتفاعل' },
-  { label: 'توفير الوقت', value: '20 ساعة', description: 'أسبوعياً في المهام اليدوية' },
-  { label: 'تحسن رضا العملاء', value: '78%', description: 'زيادة في تقييمات العملاء الإيجابية' }
-]
+  {
+    label: "متوسط زيادة المبيعات",
+    value: "42%",
+    description: "نمو في الإيرادات خلال 3 أشهر",
+  },
+  {
+    label: "تحسن التفاعل",
+    value: "65%",
+    description: "زيادة في معدلات الرد والتفاعل",
+  },
+  {
+    label: "توفير الوقت",
+    value: "20 ساعة",
+    description: "أسبوعياً في المهام اليدوية",
+  },
+  {
+    label: "تحسن رضا العملاء",
+    value: "78%",
+    description: "زيادة في تقييمات العملاء الإيجابية",
+  },
+];
 </script>
 
 <template>
@@ -97,16 +173,23 @@ const successMetrics = [
             :key="metric.label"
             class="text-center"
           >
-            <div class="text-4xl font-bold text-blue-600 mb-2">{{ metric.value }}</div>
-            <div class="text-lg font-semibold text-gray-900 mb-1">{{ metric.label }}</div>
+            <div class="text-4xl font-bold text-[#489f91] mb-2">
+              {{ metric.value }}
+            </div>
+            <div class="text-lg font-semibold text-gray-900 mb-1">
+              {{ metric.label }}
+            </div>
             <p class="text-sm text-gray-600">{{ metric.description }}</p>
           </div>
         </div>
 
-        <div class="bg-blue-50 rounded-2xl p-8">
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">عملاؤنا حققوا نتائج مذهلة</h3>
-          <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-            من الشركات الناشئة إلى المؤسسات الكبيرة، WA Smart Sender ساعد مئات العملاء على تحسين تسويقهم وزيادة مبيعاتهم
+        <div class="bg-[#489f91] rounded-2xl p-8">
+          <h3 class="text-2xl font-bold text-white mb-4">
+            عملاؤنا حققوا نتائج مذهلة
+          </h3>
+          <p class="text-lg text-gray-200 max-w-3xl mx-auto">
+            من الشركات الناشئة إلى المؤسسات الكبيرة، WA Smart Sender ساعد مئات
+            العملاء على تحسين تسويقهم وزيادة مبيعاتهم
           </p>
         </div>
       </div>
@@ -123,24 +206,27 @@ const successMetrics = [
 
         <div class="space-y-16">
           <article
-            v-for="study in caseStudies.filter(s => s.featured)"
+            v-for="study in caseStudies.filter((s) => s.featured)"
             :key="study.id"
             class="bg-white rounded-2xl shadow-2xl overflow-hidden"
           >
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
               <!-- Image Section -->
-              <div class="h-80 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                <div class="text-center text-gray-500">
-                  <i class="pi pi-image text-6xl mb-4"></i>
-                  <p class="text-lg font-medium">{{ study.company }}</p>
-                  <p class="text-sm">{{ study.image }}</p>
+              <div
+                class="h-80 bg-gradient-to-br from-[#489f9120] to-[#489f91] flex items-center justify-center"
+              >
+                <div class="w-full h-full object-cover">
+                  <div class="w-full h-full bg-gray-200"></div>
                 </div>
               </div>
 
               <!-- Content Section -->
               <div class="p-12">
                 <div class="flex items-center gap-3 text-sm text-gray-600 mb-4">
-                  <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">{{ study.industry }}</span>
+                  <span
+                    class="bg-[#489f9120] text-[#489f91] px-3 py-1 rounded-full"
+                    >{{ study.industry }}</span
+                  >
                   <span class="flex items-center">
                     <i class="pi pi-clock me-2"></i>
                     {{ study.duration }}
@@ -154,12 +240,16 @@ const successMetrics = [
                 <div class="space-y-6">
                   <div>
                     <h4 class="font-semibold text-gray-900 mb-2">التحدي:</h4>
-                    <p class="text-gray-600 leading-relaxed">{{ study.challenge }}</p>
+                    <p class="text-gray-600 leading-relaxed">
+                      {{ study.challenge }}
+                    </p>
                   </div>
 
                   <div>
                     <h4 class="font-semibold text-gray-900 mb-2">الحل:</h4>
-                    <p class="text-gray-600 leading-relaxed">{{ study.solution }}</p>
+                    <p class="text-gray-600 leading-relaxed">
+                      {{ study.solution }}
+                    </p>
                   </div>
 
                   <div>
@@ -171,7 +261,9 @@ const successMetrics = [
                         class="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
                       >
                         <span class="text-gray-700">{{ result.label }}</span>
-                        <span :class="`text-xl font-bold ${result.color}`">{{ result.value }}</span>
+                        <span :class="`text-xl font-bold ${result.color}`">{{
+                          result.value
+                        }}</span>
                       </div>
                     </div>
                   </div>
@@ -196,22 +288,29 @@ const successMetrics = [
           <article
             v-for="study in caseStudies"
             :key="study.id"
-            class="bg-white rounded-xl shadow-lg border hover:shadow-2xl transition-shadow"
+            class="bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow"
           >
-            <div class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <div
+              class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center"
+            >
               <div class="text-center text-gray-500">
                 <i class="pi pi-image text-3xl mb-2"></i>
-                <p class="text-sm">{{ study.image }}</p>
               </div>
             </div>
 
             <div class="p-6">
               <div class="flex items-center gap-2 text-xs text-gray-600 mb-3">
-                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">{{ study.industry }}</span>
-                <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">{{ study.duration }}</span>
+                <span class="bg-[#489f9120] text-[#489f91] px-2 py-1 rounded">{{
+                  study.industry
+                }}</span>
+                <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">{{
+                  study.duration
+                }}</span>
               </div>
 
-              <h3 class="text-lg font-semibold text-gray-900 mb-3 leading-tight">
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-3 leading-tight"
+              >
                 {{ study.title }}
               </h3>
 
@@ -222,15 +321,10 @@ const successMetrics = [
                   class="flex items-center justify-between text-sm"
                 >
                   <span class="text-gray-600">{{ result.label }}:</span>
-                  <span :class="`font-semibold ${result.color}`">{{ result.value }}</span>
+                  <span :class="`font-semibold ${result.color}`">{{
+                    result.value
+                  }}</span>
                 </div>
-              </div>
-
-              <div class="text-center">
-                <button class="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                  اقرأ التفاصيل
-                  <i class="pi pi-arrow-left ms-2"></i>
-                </button>
               </div>
             </div>
           </article>
@@ -253,10 +347,14 @@ const successMetrics = [
             :key="industry.name"
             class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow"
           >
-            <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+            <div
+              class="w-16 h-16 bg-[#489f9120] text-[#489f91] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
+            >
               <i :class="industry.icon"></i>
             </div>
-            <h3 class="font-semibold text-gray-900 mb-2 text-sm">{{ industry.name }}</h3>
+            <h3 class="font-semibold text-gray-900 mb-2 text-sm">
+              {{ industry.name }}
+            </h3>
             <p class="text-xs text-gray-600">{{ industry.count }} عميل</p>
           </div>
         </div>
@@ -272,7 +370,7 @@ const successMetrics = [
           class="mb-12"
         />
 
-        <div class="bg-white rounded-2xl shadow-2xl border p-8">
+        <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 p-8">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 class="text-lg font-semibold mb-6">معلومات نشاطك التجاري</h3>
@@ -282,58 +380,80 @@ const successMetrics = [
                     عدد العملاء الحاليين
                   </label>
                   <input
+                    v-model.number="customers"
                     type="number"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91]"
                     placeholder="مثال: 500"
-                  >
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">
                     متوسط قيمة الطلب (ريال)
                   </label>
                   <input
+                    v-model.number="orderValue"
                     type="number"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91]"
                     placeholder="مثال: 150"
-                  >
+                  />
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-2">
                     معدل الطلبات الشهرية لكل عميل
                   </label>
                   <input
+                    v-model.number="monthlyOrders"
                     type="number"
                     step="0.1"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91]"
                     placeholder="مثال: 2.5"
-                  >
+                  />
                 </div>
               </div>
             </div>
 
             <div>
               <h3 class="text-lg font-semibold mb-6">العائد المتوقع مع WAS</h3>
-              <div class="bg-green-50 rounded-lg p-6 space-y-4">
+              <div class="bg-[#489f91] rounded-lg p-6 space-y-4">
                 <div class="flex justify-between">
-                  <span class="text-gray-700">الإيرادات الحالية (شهرياً)</span>
-                  <span class="font-semibold">187,500 ريال</span>
+                  <span class="text-gray-100">الإيرادات الحالية (شهرياً)</span>
+                  <span class="font-semibold text-white"
+                    >{{
+                      calculatedROI.currentRevenue.toLocaleString()
+                    }}
+                    ريال</span
+                  >
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-gray-700">الزيادة المتوقعة (+35%)</span>
-                  <span class="font-semibold text-green-600">+65,625 ريال</span>
+                  <span class="text-gray-100">الزيادة المتوقعة (+35%)</span>
+                  <span class="font-semibold text-green-300"
+                    >+{{
+                      calculatedROI.revenueIncrease.toLocaleString()
+                    }}
+                    ريال</span
+                  >
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-gray-700">توفير في التسويق</span>
-                  <span class="font-semibold text-blue-600">8,000 ريال</span>
+                  <span class="text-gray-100">توفير في التسويق</span>
+                  <span class="font-semibold text-green-300"
+                    >{{
+                      calculatedROI.marketingSavings.toLocaleString()
+                    }}
+                    ريال</span
+                  >
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-gray-700">تكلفة WA Smart Sender</span>
-                  <span class="font-semibold text-red-600">-75 ريال</span>
+                  <span class="text-gray-100">تكلفة WA Smart Sender</span>
+                  <span class="font-semibold text-red-300"
+                    >-{{ calculatedROI.wasCost }} ريال</span
+                  >
                 </div>
-                <hr>
+                <hr class="border-white/20" />
                 <div class="flex justify-between text-lg">
-                  <span class="font-bold text-gray-900">صافي العائد الشهري</span>
-                  <span class="font-bold text-green-600">+73,550 ريال</span>
+                  <span class="font-bold text-white">صافي العائد الشهري</span>
+                  <span class="font-bold text-green-200 text-xl"
+                    >+{{ calculatedROI.netReturn.toLocaleString() }} ريال</span
+                  >
                 </div>
               </div>
               <p class="text-sm text-gray-600 mt-4 text-center">
@@ -346,20 +466,26 @@ const successMetrics = [
     </section>
 
     <!-- Testimonial Quote -->
-    <section class="py-20 bg-blue-600 text-white">
+    <section class="py-20 bg-[#489f91] text-white">
       <div class="container mx-auto px-6 max-w-4xl text-center">
         <div class="mb-8">
           <i class="pi pi-quote-left text-4xl opacity-50"></i>
         </div>
-        <blockquote class="text-2xl md:text-3xl font-light leading-relaxed mb-8">
-          "بعد 6 أشهر من استخدام WA Smart Sender، مبيعاتي زادت 50% ووفرت أكثر من 20 ساعة أسبوعياً. 
-          كان أفضل استثمار لنشاطي التجاري."
+        <blockquote
+          class="text-2xl md:text-3xl font-light leading-relaxed mb-8"
+        >
+          "بعد 6 أشهر من استخدام WA Smart Sender، مبيعاتي زادت 50% ووفرت أكثر من
+          20 ساعة أسبوعياً. كان أفضل استثمار لنشاطي التجاري."
         </blockquote>
         <div class="flex items-center justify-center">
-          <img src="/images/testimonial-main.jpg" alt="عبدالرحمن السعيد" class="w-16 h-16 rounded-full me-4">
+          <div
+            class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center me-4"
+          >
+            <i class="pi pi-user text-2xl text-white/80"></i>
+          </div>
           <div class="text-start">
             <div class="font-semibold text-lg">عبدالرحمن السعيد</div>
-            <div class="text-blue-200">مؤسس متجر التقنية المتقدمة</div>
+            <div class="text-gray-200">مؤسس متجر التقنية المتقدمة</div>
           </div>
         </div>
       </div>

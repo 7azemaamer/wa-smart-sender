@@ -109,7 +109,7 @@ const faqs = [
         
         <p class="text-lg text-gray-600 mb-12 leading-relaxed">
           لم تجد إجابة سؤالك؟ 
-          <a href="/contact" class="text-blue-600 hover:underline font-medium">تواصل معنا</a>
+          <a href="/contact" class="text-[#489f91] hover:underline font-medium">تواصل معنا</a>
           وسنساعدك في أسرع وقت ممكن
         </p>
       </div>
@@ -125,7 +125,7 @@ const faqs = [
             <p class="text-sm text-gray-600 mt-2">5 أسئلة</p>
           </a>
           <a href="#features" class="bg-white p-6 rounded-xl shadow-lg border hover:shadow-xl transition-shadow text-center">
-            <i class="pi pi-cog text-3xl text-blue-600 mb-4"></i>
+            <i class="pi pi-cog text-3xl text-[#489f91] mb-4"></i>
             <h3 class="font-semibold text-gray-900">المزايا والاستخدام</h3>
             <p class="text-sm text-gray-600 mt-2">8 أسئلة</p>
           </a>
@@ -176,12 +176,12 @@ const faqs = [
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="bg-white p-8 rounded-xl shadow-lg">
-            <i class="pi pi-envelope text-4xl text-blue-600 mb-4"></i>
+            <i class="pi pi-envelope text-4xl text-[#489f91] mb-4"></i>
             <h3 class="text-xl font-semibold mb-4">راسلنا</h3>
             <p class="text-gray-600 mb-6">
               أرسل استفسارك وسنجيبك خلال 24 ساعة
             </p>
-            <a href="mailto:support@wasmartsender.com" class="btn btn-primary">
+            <a href="mailto:wasmartsender@gmail.com" class="btn btn-primary">
               <i class="pi pi-send me-2"></i>
               أرسل رسالة
             </a>

@@ -50,7 +50,7 @@ const jsonLd = computed(() => ({
     "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: `https://your-domain.com${item.path}`,
+    item: `https://wsmartsender.com${item.path}`,
   })),
 }));
 

@@ -267,7 +267,7 @@ const videoGuides = [
     </section>
 
     <!-- Quick Start Section -->
-    <section class="py-20 bg-gradient-to-br from-green-50 to-green-100"
+    <section class="py-20 bg-gradient-to-br from-green-50 to-green-100">
       <div class="container mx-auto px-6 max-w-4xl">
         <div class="text-center mb-16">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">ابدأ في 3 خطوات</h2>

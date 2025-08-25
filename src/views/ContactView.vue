@@ -59,9 +59,9 @@ const submitForm = async () => {
             <div class="space-y-8">
               <div class="flex items-start">
                 <div
-                  class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center me-4"
+                  class="w-14 h-14 bg-[#489f9120] rounded-lg flex items-center justify-center me-4"
                 >
-                  <i class="pi pi-envelope text-blue-600 text-xl"></i>
+                  <i class="pi pi-envelope text-[#489f91] text-xl"></i>
                 </div>
                 <div>
                   <h3 class="text-xl font-semibold text-gray-900 mb-2">
@@ -69,10 +69,10 @@ const submitForm = async () => {
                   </h3>
                   <p class="text-gray-600 mb-2">راسلنا وسنجيبك خلال 24 ساعة</p>
                   <a
-                    href="mailto:support@wasmartsender.com"
-                    class="text-blue-600 hover:underline font-medium"
+                    href="mailto:wasmartsender@gmail.com"
+                    class="text-[#489f91] hover:underline font-medium"
                   >
-                    support@wasmartsender.com
+                    wasmartsender@gmail.com
                   </a>
                 </div>
               </div>
@@ -149,7 +149,7 @@ const submitForm = async () => {
                   v-model="form.name"
                   type="text"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91] transition-colors"
                   placeholder="أدخل اسمك الكامل"
                 />
               </div>
@@ -166,7 +166,7 @@ const submitForm = async () => {
                   v-model="form.email"
                   type="email"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91] transition-colors"
                   placeholder="example@domain.com"
                 />
               </div>
@@ -182,7 +182,7 @@ const submitForm = async () => {
                   id="phone"
                   v-model="form.phone"
                   type="tel"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91] transition-colors"
                   placeholder="+966 50 123 4567"
                 />
               </div>
@@ -199,7 +199,7 @@ const submitForm = async () => {
                   v-model="form.message"
                   rows="5"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91] transition-colors"
                   placeholder="اكتب رسالتك هنا..."
                 ></textarea>
               </div>
@@ -207,7 +207,7 @@ const submitForm = async () => {
               <button
                 type="submit"
                 :disabled="isSubmitting"
-                class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+                class="w-full bg-[#489f91] hover:bg-[#489f91] disabled:bg-[#489f91] text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
               >
                 <i v-if="isSubmitting" class="pi pi-spin pi-spinner me-2"></i>
                 <i v-else class="pi pi-send me-2"></i>
@@ -231,10 +231,10 @@ const submitForm = async () => {
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-            <i class="pi pi-question-circle text-3xl text-blue-600 mb-4"></i>
+            <i class="pi pi-question-circle text-3xl text-[#489f91] mb-4"></i>
             <h3 class="text-lg font-semibold mb-2">الأسئلة الشائعة</h3>
             <p class="text-gray-600 text-sm mb-4">إجابات على 20+ سؤال شائع</p>
-            <a href="/faq" class="text-blue-600 hover:underline font-medium">
+            <a href="/faq" class="text-[#489f91] hover:underline font-medium">
               اطلع على الأسئلة →
             </a>
           </div>

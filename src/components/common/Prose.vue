@@ -1,5 +1,5 @@
 <template>
-  <div class="prose prose-lg prose-gray max-w-none prose-headings:text-gray-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline">
+  <div class="prose prose-lg prose-gray max-w-none prose-headings:text-gray-900 prose-a:text-[#489f91] prose-a:no-underline hover:prose-a:underline">
     <slot />
   </div>
 </template>

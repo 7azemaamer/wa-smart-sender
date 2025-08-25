@@ -12,7 +12,7 @@ import Prose from '@/components/common/Prose.vue'
     image="/og/terms.png"
   />
 
-  <div class="py-12">
+  <div class="py-12 mt-12">
     <div class="container mx-auto px-6 max-w-4xl">
       <!-- Header -->
       <div class="text-center mb-16">
@@ -287,7 +287,7 @@ import Prose from '@/components/common/Prose.vue'
         <p>لأي استفسارات حول هذه الشروط:</p>
 
         <ul>
-          <li><strong>البريد الإلكتروني:</strong> legal@wasmartsender.com</li>
+          <li><strong>البريد الإلكتروني:</strong> wasmartsender@gmail.com</li>
           <li><strong>صفحة التواصل:</strong> <a href="/contact">نموذج التواصل</a></li>
           <li><strong>العنوان البريدي:</strong> القسم القانوني، WA Smart Sender</li>
         </ul>
@@ -322,7 +322,7 @@ import Prose from '@/components/common/Prose.vue'
             <i class="pi pi-envelope me-2"></i>
             تواصل معنا
           </a>
-          <a href="mailto:legal@wasmartsender.com" class="btn btn-secondary">
+          <a href="mailto:wasmartsender@gmail.com" class="btn btn-secondary">
             <i class="pi pi-balance-scale me-2"></i>
             الفريق القانوني
           </a>

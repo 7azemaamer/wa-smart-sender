@@ -121,9 +121,9 @@ const jsonLd = {
     availability: "https://schema.org/InStock",
   },
   description:
-    "إضافة كروم لأتمتة وتسويق واتساب: رسائل جماعية، ردود تلقائية بالذكاء الاصطناعي، قوالب وتقارير، وأمان عالي.",
-  url: "https://your-domain.com/was",
-  image: "https://your-domain.com/og/was.png",
+    "إضافة كروم لأتمتة وتسويق واتساب رسائل جماعية، ردود تلقائية بالذكاء الاصطناعي، قوالب وتقارير، وأمان عالي.",
+  url: "https://wsmartsender.com/was",
+  image: "https://wsmartsender.com/og/was.png",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",

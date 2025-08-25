@@ -197,7 +197,7 @@ onMounted(() => {
               <span
                 v-for="tag in post.tags"
                 :key="tag"
-                class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                class="bg-[#489f9120] text-[#489f91] px-3 py-1 rounded-full text-sm"
               >
                 {{ tag }}
               </span>
@@ -276,25 +276,25 @@ onMounted(() => {
             </h3>
             <div class="flex gap-4">
               <button
-                class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                class="flex items-center gap-2 bg-[#489f91] text-white px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors"
               >
                 <i class="pi pi-facebook"></i>
                 فيسبوك
               </button>
               <button
-                class="flex items-center gap-2 bg-blue-400 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition-colors"
+                class="flex items-center gap-2 bg-[#489f91] text-white px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors"
               >
                 <i class="pi pi-twitter"></i>
                 تويتر
               </button>
               <button
-                class="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                class="flex items-center gap-2 bg-[#489f91] text-white px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors"
               >
                 <i class="pi pi-whatsapp"></i>
                 واتساب
               </button>
               <button
-                class="flex items-center gap-2 bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors"
+                class="flex items-center gap-2 bg-[#489f91] text-white px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors"
               >
                 <i class="pi pi-linkedin"></i>
                 لينكد إن
@@ -310,14 +310,16 @@ onMounted(() => {
             <TOC :headings="headings" />
 
             <!-- Related Articles -->
-            <div class="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg p-6 shadow-lg z-20">
+            <div
+              class="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg p-6 shadow-lg z-20"
+            >
               <h3 class="text-lg font-semibold text-gray-900 mb-4">
                 مقالات ذات صلة
               </h3>
               <div class="space-y-4">
                 <article class="group">
                   <h4
-                    class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors mb-1 leading-tight"
+                    class="font-medium text-gray-900 group-hover:text-[#489f91] transition-colors mb-1 leading-tight"
                   >
                     القوالب الجاهزة لأتمتة الردود بالعربية
                   </h4>
@@ -326,7 +328,7 @@ onMounted(() => {
 
                 <article class="group">
                   <h4
-                    class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors mb-1 leading-tight"
+                    class="font-medium text-gray-900 group-hover:text-[#489f91] transition-colors mb-1 leading-tight"
                   >
                     أفضل ممارسات التقارير وتتبع الأداء
                   </h4>
@@ -335,7 +337,7 @@ onMounted(() => {
 
                 <article class="group">
                   <h4
-                    class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors mb-1 leading-tight"
+                    class="font-medium text-gray-900 group-hover:text-[#489f91] transition-colors mb-1 leading-tight"
                   >
                     كيف تنظّف قوائم الأرقام وتزيل التكرارات
                   </h4>
@@ -345,11 +347,11 @@ onMounted(() => {
             </div>
 
             <!-- Newsletter Signup -->
-            <div class="bg-blue-600 text-white rounded-lg p-6 shadow-lg z-20">
+            <div class="bg-[#489f91] text-white rounded-lg p-6 shadow-lg z-20">
               <h3 class="text-lg font-semibold mb-3">
                 اشترك في النشرة الإخبارية
               </h3>
-              <p class="text-blue-100 text-sm mb-4">
+              <p class="text-[#489f91] text-sm mb-4">
                 احصل على أحدث النصائح والأدلة
               </p>
               <div class="space-y-3">
@@ -359,7 +361,7 @@ onMounted(() => {
                   class="w-full px-3 py-2 rounded text-gray-900 text-sm focus:ring-2 focus:ring-white focus:outline-none"
                 />
                 <button
-                  class="w-full bg-white text-blue-600 py-2 rounded font-medium text-sm hover:bg-gray-100 transition-colors"
+                  class="w-full bg-white text-[#489f91] py-2 rounded font-medium text-sm hover:bg-gray-100 transition-colors"
                 >
                   اشترك الآن
                 </button>

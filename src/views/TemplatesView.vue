@@ -13,8 +13,9 @@ const templates = ref([
     title: "رسالة ترحيب للعملاء الجدد",
     category: "welcome",
     content:
-      "أهلاً وسهلاً [الاسم] 👋\n\nنشكرك على انضمامك لعائلة [اسم_الشركة]!\n\nنحن هنا لخدمتك على مدار الساعة. إذا كان لديك أي استفسار، لا تتردد في التواصل معنا.\n\nفريق [اسم_الشركة]",
-    variables: ["الاسم", "اسم_الشركة"],
+      "أهلاً وسهلاً {Name} 👋\n\nنشكرك على انضمامك لعائلة {CompanyName}!\n\nنحن هنا لخدمتك على مدار الساعة. إذا كان لديك أي استفسار، لا تتردد في التواصل معنا.\n\nفريق {CompanyName}",
+    variables: ["Name", "CompanyName"],
+    excelColumns: ["Name", "CompanyName"],
     usage: "ترحيب",
     downloads: 1250,
   },
@@ -23,8 +24,9 @@ const templates = ref([
     title: "متابعة العميل بعد الشراء",
     category: "follow-up",
     content:
-      "مرحباً [الاسم] 😊\n\nنشكرك على ثقتك بنا وشراء [المنتج] بتاريخ {التاريخ}.\n\nنتمنى أن تكون راضياً عن المنتج. إذا كان لديك أي ملاحظات أو تحتاج للمساعدة، نحن في الخدمة!\n\nتقييمك يهمنا ⭐\n\n[اسم_الشركة]",
-    variables: ["الاسم", "المنتج", "التاريخ", "اسم_الشركة"],
+      "مرحباً {Name} 😊\n\nنشكرك على ثقتك بنا وشراء {Product} بتاريخ {Date}.\n\nنتمنى أن تكون راضياً عن المنتج. إذا كان لديك أي ملاحظات أو تحتاج للمساعدة، نحن في الخدمة!\n\nتقييمك يهمنا ⭐\n\n{CompanyName}",
+    variables: ["Name", "Product", "Date", "CompanyName"],
+    excelColumns: ["Name", "Product", "Date", "CompanyName"],
     usage: "متابعة",
     downloads: 980,
   },
@@ -33,13 +35,20 @@ const templates = ref([
     title: "عرض ترويجي محدود",
     category: "promotion",
     content:
-      "🔥 عرض خاص لك [الاسم]!\n\nخصم {النسبة}% على جميع المنتجات\n\n⏰ العرض ساري حتى {تاريخ_الانتهاء}\n\n✅ شحن مجاني\n✅ ضمان الجودة\n✅ دفع عند الاستلام\n\nللطلب: [رقم_الواتس]\n\n[اسم_الشركة]",
+      "🔥 عرض خاص لك {Name}!\n\nخصم {DiscountPercent}% على جميع المنتجات\n\n⏰ العرض ساري حتى {ExpiryDate}\n\n• شحن مجاني\n• ضمان الجودة\n• دفع عند الاستلام\n\nللطلب: {WhatsAppNumber}\n\n{CompanyName}",
     variables: [
-      "الاسم",
-      "النسبة",
-      "تاريخ_الانتهاء",
-      "رقم_الواتس",
-      "اسم_الشركة",
+      "Name",
+      "DiscountPercent",
+      "ExpiryDate",
+      "WhatsAppNumber",
+      "CompanyName",
+    ],
+    excelColumns: [
+      "Name",
+      "DiscountPercent",
+      "ExpiryDate",
+      "WhatsAppNumber",
+      "CompanyName",
     ],
     usage: "تسويق",
     downloads: 2100,
@@ -49,15 +58,24 @@ const templates = ref([
     title: "تأكيد الطلب",
     category: "order",
     content:
-      "تم تأكيد طلبك [الاسم] ✅\n\nرقم الطلب: {رقم_الطلب}\nالمنتج: {المنتج}\nالسعر: {السعر} ريال\nالعنوان: {العنوان}\n\n📦 سيتم التسليم خلال 2-3 أيام\n\n💬 للاستفسار: [رقم_الدعم]\n\nشكراً لك,\nفريق [اسم_الشركة]",
+      "تم تأكيد طلبك {Name} ✅\n\nرقم الطلب: {OrderNumber}\nالمنتج: {Product}\nالسعر: {Price} ريال\nالعنوان: {Address}\n\n📦 سيتم التسليم خلال 2-3 أيام\n\n💬 للاستفسار: {SupportNumber}\n\nشكراً لك,\nفريق {CompanyName}",
     variables: [
-      "الاسم",
-      "رقم_الطلب",
-      "المنتج",
-      "السعر",
-      "العنوان",
-      "رقم_الدعم",
-      "اسم_الشركة",
+      "Name",
+      "OrderNumber",
+      "Product",
+      "Price",
+      "Address",
+      "SupportNumber",
+      "CompanyName",
+    ],
+    excelColumns: [
+      "Name",
+      "OrderNumber",
+      "Product",
+      "Price",
+      "Address",
+      "SupportNumber",
+      "CompanyName",
     ],
     usage: "طلبات",
     downloads: 750,
@@ -67,8 +85,9 @@ const templates = ref([
     title: "رد تلقائي - ساعات العمل",
     category: "auto-reply",
     content:
-      "مرحباً بك! 👋\n\nشكراً لتواصلك مع [اسم_الشركة]\n\n🕐 ساعات العمل:\nالأحد - الخميس: 9:00 ص - 6:00 م\nالجمعة - السبت: مغلق\n\nسنرد على رسالتك في أقرب وقت ممكن خلال ساعات العمل.\n\nللطوارئ: [رقم_الطوارئ]",
-    variables: ["اسم_الشركة", "رقم_الطوارئ"],
+      "مرحباً بك! 👋\n\nشكراً لتواصلك مع {CompanyName}\n\n🕐 ساعات العمل:\nالأحد - الخميس: {WorkHours}\nالجمعة - السبت: مغلق\n\nسنرد على رسالتك في أقرب وقت ممكن خلال ساعات العمل.\n\nللطوارئ: {EmergencyNumber}",
+    variables: ["CompanyName", "WorkHours", "EmergencyNumber"],
+    excelColumns: ["CompanyName", "WorkHours", "EmergencyNumber"],
     usage: "رد تلقائي",
     downloads: 1600,
   },
@@ -77,8 +96,9 @@ const templates = ref([
     title: "دعوة لتقييم الخدمة",
     category: "feedback",
     content:
-      "مرحباً [الاسم] 🌟\n\nنشكرك على تعاملك معنا. رأيك يهمنا!\n\nيرجى تقييم تجربتك معنا:\n⭐⭐⭐⭐⭐\n\nأو شاركنا ملاحظاتك هنا: [رابط_التقييم]\n\nتقييمك يساعدنا على تحسين خدماتنا.\n\nمع التقدير,\n[اسم_الشركة]",
-    variables: ["الاسم", "رابط_التقييم", "اسم_الشركة"],
+      "مرحباً {Name} 🌟\n\nنشكرك على تعاملك معنا. رأيك يهمنا!\n\nيرجى تقييم تجربتك معنا:\n⭐⭐⭐⭐⭐\n\nأو شاركنا ملاحظاتك هنا: {ReviewLink}\n\nتقييمك يساعدنا على تحسين خدماتنا.\n\nمع التقدير,\n{CompanyName}",
+    variables: ["Name", "ReviewLink", "CompanyName"],
+    excelColumns: ["Name", "ReviewLink", "CompanyName"],
     usage: "تقييم",
     downloads: 890,
   },
@@ -152,6 +172,26 @@ const downloadTemplate = (template) => {
   window.URL.revokeObjectURL(url);
   document.body.removeChild(a);
 };
+
+const downloadExcelTemplate = (template) => {
+  // Create CSV content with headers
+  const headers = template.excelColumns.join(",");
+  const sampleRow = template.excelColumns.map(() => "مثال").join(",");
+  const csvContent = `${headers}\n${sampleRow}`;
+
+  const blob = new Blob(["\ufeff" + csvContent], {
+    type: "text/csv;charset=utf-8;",
+  });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.style.display = "none";
+  a.href = url;
+  a.download = `${template.title} - Excel Template.csv`;
+  document.body.appendChild(a);
+  a.click();
+  window.URL.revokeObjectURL(url);
+  document.body.removeChild(a);
+};
 </script>
 
 <template>
@@ -180,11 +220,11 @@ const downloadTemplate = (template) => {
               v-model="searchQuery"
               type="text"
               placeholder="ابحث في القوالب..."
-              class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91]"
             />
             <select
               v-model="selectedCategory"
-              class="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              class="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91]"
             >
               <option
                 v-for="category in categories"
@@ -202,15 +242,15 @@ const downloadTemplate = (template) => {
           class="flex flex-wrap justify-center items-center gap-8 text-gray-600 text-sm"
         >
           <div class="flex items-center">
-            <i class="pi pi-file-edit text-blue-600 me-2"></i>
-            {{ templates.length }}+ قالب مجاني
+            <i class="pi pi-file-edit text-[#489f91] me-2"></i>
+            {{ templates.length }}+ قالب
           </div>
           <div class="flex items-center">
-            <i class="pi pi-download text-green-600 me-2"></i>
+            <i class="pi pi-download text-[#489f91] me-2"></i>
             7000+ تحميل
           </div>
           <div class="flex items-center">
-            <i class="pi pi-check-circle text-purple-600 me-2"></i>
+            <i class="pi pi-check-circle text-[#489f91] me-2"></i>
             جاهز للاستخدام
           </div>
         </div>
@@ -242,7 +282,7 @@ const downloadTemplate = (template) => {
           <article
             v-for="template in filteredTemplates"
             :key="template.id"
-            class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-shadow"
+            class="bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow"
           >
             <div class="p-8">
               <!-- Header -->
@@ -253,11 +293,11 @@ const downloadTemplate = (template) => {
                   </h3>
                   <div class="flex items-center gap-4 text-sm text-gray-600">
                     <span
-                      class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full"
+                      class="bg-[#489f9120] text-[#489f91] px-3 py-1 rounded-full"
                     >
                       {{ template.usage }}
                     </span>
-                    <span class="flex items-center">
+                    <span class="flex items-center cursor-pointer">
                       <i class="pi pi-download me-1"></i>
                       {{ template.downloads }}
                     </span>
@@ -268,7 +308,7 @@ const downloadTemplate = (template) => {
               <!-- Template Preview -->
               <div class="bg-gray-50 rounded-lg p-4 mb-6">
                 <div
-                  class="bg-green-500 text-white p-3 rounded-lg rounded-bl-sm max-w-xs"
+                  class="bg-[#489f91] text-white p-3 rounded-lg rounded-bl-sm max-w-xs"
                 >
                   <p class="text-sm leading-relaxed whitespace-pre-line">
                     {{ template.content }}
@@ -288,7 +328,7 @@ const downloadTemplate = (template) => {
                   <span
                     v-for="variable in template.variables"
                     :key="variable"
-                    class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-medium"
+                    class="bg-[#489f9120] text-[#489f91] px-2 py-1 rounded text-xs font-medium"
                   >
                     [{{ variable }}]
                   </span>
@@ -299,15 +339,10 @@ const downloadTemplate = (template) => {
               <div class="flex gap-3">
                 <button
                   @click="downloadTemplate(template)"
-                  class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
+                  class="flex-1 cursor-pointer bg-[#489f91] hover:bg-[#489f91] text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
                 >
                   <i class="pi pi-download me-2"></i>
                   تحميل القالب
-                </button>
-                <button
-                  class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-4 rounded-lg transition-colors"
-                >
-                  <i class="pi pi-eye"></i>
                 </button>
               </div>
             </div>
@@ -328,7 +363,7 @@ const downloadTemplate = (template) => {
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div class="text-center">
             <div
-              class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
+              class="w-16 h-16 bg-[#489f9120] text-[#489f91] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
             >
               <i class="pi pi-download"></i>
             </div>
@@ -340,7 +375,7 @@ const downloadTemplate = (template) => {
 
           <div class="text-center">
             <div
-              class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
+              class="w-16 h-16 bg-[#489f9120] text-[#489f91] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
             >
               <i class="pi pi-edit"></i>
             </div>
@@ -352,7 +387,7 @@ const downloadTemplate = (template) => {
 
           <div class="text-center">
             <div
-              class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
+              class="w-16 h-16 bg-[#489f9120] text-[#489f91] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
             >
               <i class="pi pi-upload"></i>
             </div>
@@ -364,7 +399,7 @@ const downloadTemplate = (template) => {
 
           <div class="text-center">
             <div
-              class="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
+              class="w-16 h-16 bg-[#489f9120] text-[#489f91] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
             >
               <i class="pi pi-send"></i>
             </div>
@@ -372,6 +407,104 @@ const downloadTemplate = (template) => {
             <p class="text-gray-600 text-sm">
               ابدأ حملتك واحصل على نتائج رائعة
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Excel Usage Guide -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <SectionHeading
+          title="كيفية استخدام ملفات Excel مع القوالب"
+          subtitle="دليل شامل لربط القوالب مع بيانات العملاء من ملفات Excel"
+          class="mb-16"
+        />
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Left Column - Steps -->
+          <div>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-[#489f91] text-white rounded-full flex items-center justify-center font-bold text-sm me-4 flex-shrink-0">
+                  1
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">حمّل ملف Excel للقالب</h3>
+                  <p class="text-gray-600">اضغط على زر "تحميل Excel" لتحصل على ملف يحتوي على الأعمدة المطلوبة مسبقاً</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-[#489f91] text-white rounded-full flex items-center justify-center font-bold text-sm me-4 flex-shrink-0">
+                  2
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">املأ بيانات العملاء</h3>
+                  <p class="text-gray-600">أضف معلومات كل عميل في صف منفصل تحت الأعمدة المناسبة</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-[#489f91] text-white rounded-full flex items-center justify-center font-bold text-sm me-4 flex-shrink-0">
+                  3
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">ارفع في WA Smart Sender</h3>
+                  <p class="text-gray-600">استورد الملف في الإضافة وسيتم استبدال المتغيرات تلقائياً</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-8 h-8 bg-[#489f91] text-white rounded-full flex items-center justify-center font-bold text-sm me-4 flex-shrink-0">
+                  4
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">أرسل رسائل مخصصة</h3>
+                  <p class="text-gray-600">كل عميل سيحصل على رسالة مخصصة بمعلوماته الشخصية</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column - Example -->
+          <div>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <h3 class="text-lg font-semibold mb-4">مثال على ملف Excel:</h3>
+              <div class="overflow-hidden border border-gray-200 rounded-lg">
+                <table class="w-full text-sm">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-4 py-3 text-right font-medium">Name</th>
+                      <th class="px-4 py-3 text-right font-medium">CompanyName</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-4 py-3">أحمد محمد</td>
+                      <td class="px-4 py-3">شركة النور</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3">فاطمة أحمد</td>
+                      <td class="px-4 py-3">مؤسسة الأمل</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3">محمد علي</td>
+                      <td class="px-4 py-3">متجر السعادة</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                <h4 class="font-medium mb-2">النتيجة للعميل الأول:</h4>
+                <div class="bg-[#489f91] text-white p-3 rounded-lg text-sm">
+                  أهلاً وسهلاً أحمد محمد 👋<br><br>
+                  نشكرك على انضمامك لعائلة شركة النور!<br><br>
+                  نحن هنا لخدمتك على مدار الساعة...
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -391,11 +524,7 @@ const downloadTemplate = (template) => {
             <div>
               <h3 class="text-lg font-semibold mb-4">المتغيرات الأساسية</h3>
               <CopyCode
-                :code="`[الاسم] - اسم العميل
-[الشركة] - اسم شركة العميل
-[المنتج] - اسم المنتج
-[السعر] - سعر المنتج
-[الهاتف] - رقم هاتف العميل`"
+                :code="`[name] - اسم العميل\n[phone] - رقم هاتف العميل`"
                 language="متغيرات"
               />
             </div>
@@ -403,11 +532,7 @@ const downloadTemplate = (template) => {
             <div>
               <h3 class="text-lg font-semibold mb-4">متغيرات التاريخ والوقت</h3>
               <CopyCode
-                :code="`{التاريخ} - التاريخ الحالي
-{الوقت} - الوقت الحالي
-{اليوم} - اسم اليوم
-{الشهر} - اسم الشهر
-{السنة} - السنة الحالية`"
+                :code="`{date} - التاريخ الحالي\n{time} - الوقت الحالي`"
                 language="تواريخ"
               />
             </div>
@@ -418,7 +543,7 @@ const downloadTemplate = (template) => {
 
     <!-- Custom Template Request -->
     <section
-      class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white"
+      class="py-20 bg-gradient-to-r from-[#489f91] to-[#489f91] text-white"
     >
       <div class="container mx-auto px-6 max-w-4xl text-center">
         <h2 class="text-3xl font-bold mb-6">تحتاج قالب مخصص؟</h2>
@@ -427,15 +552,8 @@ const downloadTemplate = (template) => {
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="/contact"
-            class="btn bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
-          >
-            <i class="pi pi-envelope me-2"></i>
-            اطلب قالب مخصص
-          </a>
-          <a
             href="/guides"
-            class="btn border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg"
+            class="btn border-2 border-white bg-white text-[#489f91] hover:bg-[#489f91] hover:text-white px-8 py-4 text-lg"
           >
             <i class="pi pi-book me-2"></i>
             تعلم إنشاء القوالب

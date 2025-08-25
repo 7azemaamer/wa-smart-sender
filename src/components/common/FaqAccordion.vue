@@ -62,7 +62,7 @@ onUnmounted(() => {
     >
       <button
         @click="toggleItem(index)"
-        class="w-full px-6 py-4 text-start bg-white hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+        class="w-full px-6 py-4 text-start bg-white hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#489f91] focus:ring-inset"
         :aria-expanded="openItems.has(index)"
         :aria-controls="`faq-answer-${index}`"
       >

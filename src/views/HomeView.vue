@@ -9,6 +9,7 @@ import TestimonialCard from "@/components/common/TestimonialCard.vue";
 import { RouterLink } from "vue-router";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "@/assets/swiper-custom.css";
 
 const blogPosts = [
   {
@@ -171,7 +172,7 @@ const stats = [
 
 const swiperOptions = {
   slidesPerView: 3,
-  spaceBetween: 32,
+  spaceBetween: 24,
   loop: true,
   pagination: {
     el: ".swiper-pagination",
@@ -186,8 +187,12 @@ const swiperOptions = {
       slidesPerView: 1,
       spaceBetween: 16,
     },
-    1024: {
+    768: {
       slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    1024: {
+      slidesPerView: 3,
       spaceBetween: 24,
     },
   },
@@ -311,17 +316,25 @@ const swiperOptions = {
           subtitle="آراء حقيقية من أصحاب الأعمال والمسوقين الذين يستخدمون WA Smart Sender"
           class="mb-16"
         />
-        <swiper :options="swiperOptions" class="swiper">
-          <swiper-slide
-            v-for="testimonial in testimonials"
-            :key="testimonial.name"
-          >
-            <TestimonialCard :testimonial="testimonial" />
-          </swiper-slide>
-          <div class="swiper-pagination" slot="pagination"></div>
-          <div class="swiper-button-prev" slot="button-prev"></div>
-          <div class="swiper-button-next" slot="button-next"></div>
-        </swiper>
+        <div class="relative">
+          <swiper :options="swiperOptions" class="swiper">
+            <swiper-slide
+              v-for="testimonial in testimonials"
+              :key="testimonial.name"
+            >
+              <TestimonialCard :testimonial="testimonial" />
+            </swiper-slide>
+            <div class="swiper-pagination" slot="pagination"></div>
+          </swiper>
+          
+          <!-- Custom Navigation Buttons -->
+          <button class="swiper-button-prev custom-nav-btn" slot="button-prev">
+            <i class="pi pi-chevron-right text-lg"></i>
+          </button>
+          <button class="swiper-button-next custom-nav-btn" slot="button-next">
+            <i class="pi pi-chevron-left text-lg"></i>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -444,15 +457,3 @@ const swiperOptions = {
   </div>
 </template>
 
-<style scoped>
-.swiper {
-  padding: 1rem 0;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-}
-</style>

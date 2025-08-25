@@ -12,7 +12,7 @@ import Prose from '@/components/common/Prose.vue'
     image="/og/privacy.png"
   />
 
-  <div class="py-12">
+  <div class="py-12 mt-12">
     <div class="container mx-auto px-6 max-w-4xl">
       <!-- Header -->
       <div class="text-center mb-16">
@@ -21,7 +21,7 @@ import Prose from '@/components/common/Prose.vue'
           subtitle="آخر تحديث: 24 أغسطس 2025"
           size="xl"
         />
-        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+        <div class="mt-6 p-4 bg-[#489f9120] rounded-lg">
           <p class="text-gray-700">
             نحن في WA Smart Sender نحترم خصوصيتك ونلتزم بحماية معلوماتك الشخصية
           </p>
@@ -194,7 +194,7 @@ import Prose from '@/components/common/Prose.vue'
         <p>لأي استفسارات حول هذه السياسة أو حقوق البيانات، يمكنك التواصل معنا:</p>
 
         <ul>
-          <li><strong>البريد الإلكتروني:</strong> privacy@wasmartsender.com</li>
+          <li><strong>البريد الإلكتروني:</strong> wasmartsender@gmail.com</li>
           <li><strong>البريد العادي:</strong> قسم حماية البيانات، WA Smart Sender</li>
           <li><strong>نموذج التواصل:</strong> <a href="/contact">صفحة التواصل</a></li>
         </ul>
@@ -231,7 +231,7 @@ import Prose from '@/components/common/Prose.vue'
             <i class="pi pi-envelope me-2"></i>
             تواصل معنا
           </a>
-          <a href="mailto:privacy@wasmartsender.com" class="btn btn-secondary">
+          <a href="mailto:wasmartsender@gmail.com" class="btn btn-secondary">
             <i class="pi pi-shield me-2"></i>
             فريق حماية البيانات
           </a>

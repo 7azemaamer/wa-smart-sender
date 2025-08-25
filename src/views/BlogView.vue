@@ -152,12 +152,12 @@ const clearFilters = () => {
                 v-model="searchQuery"
                 type="text"
                 placeholder="ابحث في المقالات..."
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91]"
               />
             </div>
             <select
               v-model="selectedTag"
-              class="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              class="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91]"
             >
               <option value="">جميع المواضيع</option>
               <option v-for="tag in availableTags" :key="tag" :value="tag">
@@ -174,19 +174,19 @@ const clearFilters = () => {
             <span class="text-sm text-gray-600">الفلاتر النشطة:</span>
             <span
               v-if="selectedTag"
-              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#489f9120] text-[#489f91]"
             >
               {{ selectedTag }}
               <button
                 @click="selectedTag = ''"
-                class="ms-2 text-blue-600 hover:text-blue-800"
+                class="ms-2 text-[#489f91] hover:text-[#3d8a7d]"
               >
                 <i class="pi pi-times text-xs"></i>
               </button>
             </span>
             <span
               v-if="searchQuery"
-              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800"
+              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#489f9120] text-[#489f91]"
             >
               "{{ searchQuery }}"
               <button
@@ -212,7 +212,7 @@ const clearFilters = () => {
       <div class="container mx-auto px-6 max-w-6xl">
         <div class="flex items-center justify-between mb-12">
           <h2 class="text-3xl font-bold text-gray-900">المقالات المميزة</h2>
-          <div class="w-16 h-1 bg-blue-600 rounded"></div>
+          <div class="w-16 h-1 bg-[#489f91] rounded"></div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -242,7 +242,7 @@ const clearFilters = () => {
               </div>
 
               <h3
-                class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight"
+                class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#489f91] transition-colors leading-tight"
               >
                 {{ post.title }}
               </h3>
@@ -263,7 +263,7 @@ const clearFilters = () => {
                 </div>
                 <RouterLink
                   :to="`/blog/${post.slug}`"
-                  class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                  class="inline-flex items-center text-[#489f91] hover:text-[#489f91] font-medium"
                 >
                   اقرأ المزيد
                   <i class="pi pi-arrow-left ms-2"></i>
@@ -328,7 +328,7 @@ const clearFilters = () => {
               </div>
 
               <h3
-                class="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors leading-tight"
+                class="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#489f91] transition-colors leading-tight"
               >
                 {{ post.title }}
               </h3>
@@ -357,7 +357,7 @@ const clearFilters = () => {
 
               <RouterLink
                 :to="`/blog/${post.slug}`"
-                class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm"
+                class="inline-flex items-center text-[#489f91] hover:text-[#489f91] font-medium text-sm"
               >
                 اقرأ المقال
                 <i class="pi pi-arrow-left ms-2"></i>
@@ -372,7 +372,7 @@ const clearFilters = () => {
     <section class="py-20">
       <div class="container mx-auto px-6 max-w-4xl">
         <div
-          class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-12 text-white text-center"
+          class="bg-gradient-to-r from-[#489f91] to-[#489f91] rounded-2xl p-12 text-white text-center"
         >
           <h2 class="text-3xl font-bold mb-4">اشترك في النشرة الإخبارية</h2>
           <p class="text-xl mb-8 opacity-90">
@@ -383,10 +383,10 @@ const clearFilters = () => {
             <input
               type="email"
               placeholder="بريدك الإلكتروني"
-              class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-white focus:outline-none"
+              class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:ring-2 focus:ring-white focus:outline-none placeholder:text-white border border-gray-300"
             />
             <button
-              class="btn bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 whitespace-nowrap"
+              class="btn bg-white text-[#489f91] hover:bg-gray-100 px-6 py-3 whitespace-nowrap"
             >
               اشترك الآن
             </button>
