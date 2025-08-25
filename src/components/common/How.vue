@@ -41,7 +41,7 @@ onMounted(async () => {
         كيف يساعدك WA Smart Sender؟
       </h2>
       <p class="text-slate-500 text-lg mb-12 max-w-2xl">
-        أدوات ذكية لتوسيع نطاق رسائلك وتحقيق أقصى فعالية ممكنة — دون تعقيد.
+        أدوات ذكية لتوسيع نطاق رسائلك وتحقيق أقصى فعالية ممكنة ← دون تعقيد.
       </p>
 
       <div class="grid md:grid-cols-3 gap-8">

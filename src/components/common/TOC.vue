@@ -50,7 +50,7 @@ onUnmounted(() => {
 
 <template>
   <nav
-    class="toc sticky top-24 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg z-20 overflow-hidden"
+    class="toc bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg overflow-hidden"
   >
     <div class="p-6 pb-4">
       <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">

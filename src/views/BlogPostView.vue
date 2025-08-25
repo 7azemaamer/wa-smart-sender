@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { marked } from "marked";
 import AppSEO from "@/components/common/AppSEO.vue";
 import Breadcrumbs from "@/components/common/Breadcrumbs.vue";
 import Prose from "@/components/common/Prose.vue";
@@ -8,8 +8,6 @@ import TOC from "@/components/common/TOC.vue";
 import CTAInline from "@/components/common/CTAInline.vue";
 import FaqAccordion from "@/components/common/FaqAccordion.vue";
 import { generateBlogPostJsonLD } from "@/utils/seo";
-
-const route = useRoute();
 
 const post = ref({
   title: "أمان الإرسال الجماعي في واتساب للأعمال: دليل شامل",
@@ -126,7 +124,7 @@ WA Smart Sender يوفر نظام حماية متقدم للحفاظ على أم
     {
       question: "هل الحظر مضمون عند الإرسال الجماعي؟",
       answer:
-        "لا. يعتمد على السلوك—استخدم فواصل عشوائية ونصوص متنوعة وتحقق من الأرقام لتقليل المخاطر بشكل كبير.",
+        "لا. يعتمد على السلوك←استخدم فواصل عشوائية ونصوص متنوعة وتحقق من الأرقام لتقليل المخاطر بشكل كبير.",
     },
     {
       question: "كم عدد الرسائل الآمن يومياً؟",
@@ -143,6 +141,7 @@ WA Smart Sender يوفر نظام حماية متقدم للحفاظ على أم
 
 const headings = ref([]);
 
+const parsedContent = computed(() => marked(post.value.content));
 const jsonLd = computed(() => generateBlogPostJsonLD(post.value));
 
 onMounted(() => {
@@ -226,11 +225,20 @@ onMounted(() => {
 
             <!-- Author Info -->
             <div class="flex items-center p-6 bg-gray-50 rounded-xl">
-              <img
-                :src="post.authorImage || '/authors/default.png'"
-                :alt="post.author"
-                class="w-16 h-16 rounded-full object-cover me-4"
-              />
+              <div class="relative w-16 h-16 me-4">
+                <img
+                  :src="post.authorImage || '/authors/default.png'"
+                  :alt="post.author"
+                  class="w-16 h-16 rounded-full object-cover"
+                  @error="$event.target.style.display = 'none'"
+                />
+                <div
+                  class="w-16 h-16 rounded-full bg-[#489f91] flex items-center justify-center text-white font-bold text-xl"
+                  :class="post.authorImage ? 'absolute top-0 left-0' : ''"
+                >
+                  <i class="pi pi-user"></i>
+                </div>
+              </div>
               <div>
                 <h3 class="font-semibold text-gray-900">{{ post.author }}</h3>
                 <p class="text-gray-600 text-sm">{{ post.authorBio }}</p>
@@ -249,7 +257,7 @@ onMounted(() => {
           </div>
 
           <!-- Article Content -->
-          <Prose v-html="post.content" class="mb-12" />
+          <Prose v-html="parsedContent" class="mb-12" />
 
           <!-- FAQ Section -->
           <section v-if="post.faqs && post.faqs.length > 0" class="mb-12">
@@ -274,30 +282,30 @@ onMounted(() => {
             <h3 class="text-lg font-semibold text-gray-900 mb-4">
               شارك المقال
             </h3>
-            <div class="flex gap-4">
+            <div class="flex flex-wrap gap-2 md:gap-4">
               <button
-                class="flex items-center gap-2 bg-[#489f91] text-white px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors"
+                class="flex items-center gap-1 md:gap-2 bg-[#489f91] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors text-sm md:text-base"
               >
                 <i class="pi pi-facebook"></i>
-                فيسبوك
+                <span class="hidden sm:inline">فيسبوك</span>
               </button>
               <button
-                class="flex items-center gap-2 bg-[#489f91] text-white px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors"
+                class="flex items-center gap-1 md:gap-2 bg-[#489f91] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors text-sm md:text-base"
               >
                 <i class="pi pi-twitter"></i>
-                تويتر
+                <span class="hidden sm:inline">تويتر</span>
               </button>
               <button
-                class="flex items-center gap-2 bg-[#489f91] text-white px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors"
+                class="flex items-center gap-1 md:gap-2 bg-[#489f91] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors text-sm md:text-base"
               >
                 <i class="pi pi-whatsapp"></i>
-                واتساب
+                <span class="hidden sm:inline">واتساب</span>
               </button>
               <button
-                class="flex items-center gap-2 bg-[#489f91] text-white px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors"
+                class="flex items-center gap-1 md:gap-2 bg-[#489f91] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors text-sm md:text-base"
               >
                 <i class="pi pi-linkedin"></i>
-                لينكد إن
+                <span class="hidden sm:inline">لينكد إن</span>
               </button>
             </div>
           </div>
@@ -305,7 +313,7 @@ onMounted(() => {
 
         <!-- Sidebar -->
         <aside class="lg:col-span-1">
-          <div class="sticky top-24 space-y-6 z-10">
+          <div class="space-y-6">
             <!-- Table of Contents -->
             <TOC :headings="headings" />
 
@@ -358,7 +366,7 @@ onMounted(() => {
                 <input
                   type="email"
                   placeholder="بريدك الإلكتروني"
-                  class="w-full px-3 py-2 rounded text-gray-900 text-sm focus:ring-2 focus:ring-white focus:outline-none"
+                  class="w-full px-3 py-2 rounded text-white border border-white placeholder:text-white text-sm focus:ring-2 focus:ring-[#489f91] focus:outline-none"
                 />
                 <button
                   class="w-full bg-white text-[#489f91] py-2 rounded font-medium text-sm hover:bg-gray-100 transition-colors"

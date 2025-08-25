@@ -144,14 +144,9 @@ const handleCTAHover = (event, isEntering) => {
 <template>
   <section
     ref="heroRef"
-    class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    class="relative min-h-screen flex items-start mt-14 justify-center overflow-hidden"
     dir="rtl"
   >
-    <div
-      ref="backgroundRef"
-      class="absolute inset-0 bg-gradient-to-br from-[#489f91]/10 via-white to-[#489f91]/5"
-    />
-
     <div ref="floatingRef" class="absolute inset-0 pointer-events-none">
       <div
         class="absolute top-20 right-20 w-20 h-20 bg-gradient-to-br from-[#489f91] to-[#3a7a6f] rounded-full opacity-20 blur-xl"
@@ -170,7 +165,7 @@ const handleCTAHover = (event, isEntering) => {
     <div class="container relative z-10 text-center px-6">
       <h1
         ref="titleRef"
-        class="text-5xl md:text-7xl font-bold mb-6 leading-tight gradient-text"
+        class="text-3xl md:text-7xl font-bold mb-6 leading-tight gradient-text"
       >
         وسّع نطاق رسائلك على واتساب
         <br />
@@ -181,12 +176,12 @@ const handleCTAHover = (event, isEntering) => {
         ref="subtitleRef"
         class="text-xl md:text-2xl text-slate-600 mb-4 max-w-4xl mx-auto leading-relaxed"
       >
-        أتمتة، تخصيص، تفاعل — مباشرة من متصفحك
+        أتمتة، تخصيص، تفاعل ← مباشرة من متصفحك
       </p>
 
       <p ref="descRef" class="text-lg text-slate-500 mb-12 max-w-3xl mx-auto">
         WA Smart Sender هو إضافة كروم مثالية لإرسال رسائل واتساب جماعية، والرد
-        التلقائي باستخدام الذكاء الاصطناعي، وإدارة الحملات، وتحليل الأداء — بدون
+        التلقائي باستخدام الذكاء الاصطناعي، وإدارة الحملات، وتحليل الأداء ← بدون
         الحاجة لحفظ أي جهة اتصال.
       </p>
 
