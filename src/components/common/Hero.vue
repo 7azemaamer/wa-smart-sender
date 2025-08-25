@@ -189,13 +189,16 @@ const handleCTAHover = (event, isEntering) => {
         ref="ctaRef"
         class="flex flex-col sm:flex-row gap-4 justify-center items-center"
       >
-        <button
+        <a
+          href="https://chromewebstore.google.com/detail/wa-smart-sender/ckibonklempheenficakknnojmemhhcj?hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
           class="btn btn-primary text-lg px-8 py-4 shadow-xl"
           @mouseenter="(e) => handleCTAHover(e, true)"
           @mouseleave="(e) => handleCTAHover(e, false)"
         >
           <span>جرّبه مجانًا الآن</span>
-        </button>
+        </a>
 
         <button
           class="btn btn-secondary text-lg px-8 py-4"

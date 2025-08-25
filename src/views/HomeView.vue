@@ -427,7 +427,7 @@ const swiperOptions = {
           title="جاهز لتحويل طريقة تواصلك مع العملاء؟"
           description="انضم إلى آلاف الشركات التي تستخدم WA Smart Sender لتحسين تجربة العملاء وزيادة المبيعات. ابدأ تجربتك المجانية اليوم!"
           button-text="ابدأ التجربة المجانية الآن"
-          button-link="/pricing"
+          button-link="https://chromewebstore.google.com/detail/wa-smart-sender/ckibonklempheenficakknnojmemhhcj?hl=en"
           variant="primary"
           size="lg"
         />

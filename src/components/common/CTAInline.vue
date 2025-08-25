@@ -1,7 +1,8 @@
 <script setup>
 import { RouterLink } from "vue-router";
+import { computed } from "vue";
 
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     required: true,
@@ -30,6 +31,10 @@ defineProps({
   },
 });
 
+const isExternalLink = computed(() => {
+  return props.buttonLink.startsWith('http');
+});
+
 const variantClasses = {
   primary: "bg-[#489f91] hover:bg-[#3a7a6f] text-white",
   secondary: "bg-[#489f91] hover:bg-[#3a7a6f] text-white",
@@ -55,7 +60,22 @@ const sizeClasses = {
       <p v-if="description" class="text-gray-600 text-lg mb-6 leading-relaxed">
         {{ description }}
       </p>
+      <a
+        v-if="isExternalLink"
+        :href="buttonLink"
+        target="_blank"
+        rel="noopener noreferrer"
+        :class="[
+          'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl',
+          variantClasses[variant],
+          sizeClasses[size],
+        ]"
+      >
+        <i class="pi pi-arrow-left me-2"></i>
+        {{ buttonText }}
+      </a>
       <RouterLink
+        v-else
         :to="buttonLink"
         :class="[
           'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl',
