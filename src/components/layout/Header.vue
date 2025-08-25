@@ -44,7 +44,7 @@ onMounted(async () => {
     end: "bottom bottom",
     onEnter: () => {
       gsap.to(navRef.value, {
-        backdropFilter: "blur(16px)",
+        backdropFilter: "blur(8px)",
         backgroundColor: "rgba(255, 255, 255, 0.7)",
         borderBottomColor: "rgba(203, 213, 225, 0.3)",
         duration: 0.3,
@@ -110,7 +110,7 @@ const toggleMobileMenu = () => {
         <img
           src="/images/logo.png"
           alt="WA Smart Sender Logo"
-          class="w-20 h-15 object-contain transition-transform"
+          class="w-30 h-20 object-contain transition-transform"
         />
       </RouterLink>
 
