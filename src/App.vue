@@ -1,8 +1,7 @@
 <script setup>
+import DefaultLayout from "@/layouts/Default.vue";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <DefaultLayout />
 </template>

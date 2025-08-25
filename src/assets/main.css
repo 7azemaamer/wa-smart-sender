@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/* Base styles */
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  line-height: 1.7;
+  color: #1f2937;
+  background: #ffffff;
+}
+
+/* RTL-specific adjustments */
+* {
+  box-sizing: border-box;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #489f91 0%, #3a7a6f 50%, #2d5f57 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button components with RTL support */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  direction: rtl;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #489f91 0%, #3a7a6f 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(72, 159, 145, 0.39);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px 0 rgba(72, 159, 145, 0.5);
+  color: white;
+}
+
+.btn-secondary {
+  background: white;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  color: #1e293b;
+}
+
+/* Container with RTL support */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Animation preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #489f91;
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+}
