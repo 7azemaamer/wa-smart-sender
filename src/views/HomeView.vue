@@ -243,7 +243,7 @@ const swiperOptions = {
             <div class="text-3xl md:text-4xl font-bold mb-2">
               {{ stat.number }}
             </div>
-            <div class="text-[#489f91]/80 text-sm md:text-base">
+            <div class="text-white text-sm md:text-base">
               {{ stat.label }}
             </div>
           </div>
