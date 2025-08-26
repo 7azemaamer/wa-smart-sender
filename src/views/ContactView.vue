@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import AppSEO from "@/components/common/AppSEO.vue";
 import SectionHeading from "@/components/common/SectionHeading.vue";
+import ApiService from "@/utils/api.js";
 
 const form = ref({
   name: "",
@@ -12,13 +13,60 @@ const form = ref({
 
 const isSubmitting = ref(false);
 const showSuccess = ref(false);
+const showError = ref(false);
+const errorMessage = ref("");
+const successMessage = ref("");
+const fieldErrors = ref({});
+
+const validateForm = () => {
+  fieldErrors.value = {};
+  
+  if (!form.value.name.trim()) {
+    fieldErrors.value.name = "الاسم مطلوب";
+  }
+  if (!form.value.email.trim()) {
+    fieldErrors.value.email = "البريد الإلكتروني مطلوب";
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.value.email)) {
+      fieldErrors.value.email = "يرجى إدخال بريد إلكتروني صحيح";
+    }
+  }
+  if (!form.value.message.trim()) {
+    fieldErrors.value.message = "الرسالة مطلوبة";
+  }
+  
+  const errors = Object.values(fieldErrors.value);
+  if (errors.length > 0) {
+    throw new Error(errors[0]);
+  }
+};
+
+const resetMessages = () => {
+  showSuccess.value = false;
+  showError.value = false;
+  errorMessage.value = "";
+  successMessage.value = "";
+  fieldErrors.value = {};
+};
 
 const submitForm = async () => {
-  isSubmitting.value = true;
+  resetMessages();
+  
+  try {
+    validateForm();
+    
+    isSubmitting.value = true;
 
-  setTimeout(() => {
+    const response = await ApiService.submitContactForm({
+      name: form.value.name.trim(),
+      email: form.value.email.trim(),
+      phone: form.value.phone.trim() || null,
+      message: form.value.message.trim()
+    });
+
+    successMessage.value = response.message || "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.";
     showSuccess.value = true;
-    isSubmitting.value = false;
 
     form.value = {
       name: "",
@@ -29,8 +77,19 @@ const submitForm = async () => {
 
     setTimeout(() => {
       showSuccess.value = false;
-    }, 5000);
-  }, 1000);
+    }, 8000);
+
+  } catch (error) {
+    console.error('Contact form error:', error);
+    errorMessage.value = error.message || "حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.";
+    showError.value = true;
+    
+    setTimeout(() => {
+      showError.value = false;
+    }, 6000);
+  } finally {
+    isSubmitting.value = false;
+  }
 };
 </script>
 
@@ -119,6 +178,7 @@ const submitForm = async () => {
           <div
             class="bg-white rounded-2xl shadow-2xl border border-gray-200 p-8"
           >
+            <!-- Success Message -->
             <div
               v-if="showSuccess"
               class="mb-8 p-4 bg-green-50 border border-green-200 rounded-lg"
@@ -130,7 +190,25 @@ const submitForm = async () => {
                     تم إرسال رسالتك بنجاح!
                   </h4>
                   <p class="text-green-700 text-sm">
-                    سنتواصل معك في أقرب وقت ممكن.
+                    {{ successMessage }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error Message -->
+            <div
+              v-if="showError"
+              class="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg"
+            >
+              <div class="flex items-center">
+                <i class="pi pi-exclamation-triangle text-red-600 me-3"></i>
+                <div>
+                  <h4 class="font-semibold text-red-800">
+                    خطأ في الإرسال
+                  </h4>
+                  <p class="text-red-700 text-sm">
+                    {{ errorMessage }}
                   </p>
                 </div>
               </div>
@@ -149,9 +227,17 @@ const submitForm = async () => {
                   v-model="form.name"
                   type="text"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91] transition-colors"
+                  :class="[
+                    'w-full px-4 py-3 border rounded-lg focus:ring-2 transition-colors',
+                    fieldErrors.name 
+                      ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
+                      : 'border-gray-300 focus:ring-[#489f91] focus:border-[#489f91]'
+                  ]"
                   placeholder="أدخل اسمك الكامل"
                 />
+                <p v-if="fieldErrors.name" class="mt-1 text-sm text-red-600">
+                  {{ fieldErrors.name }}
+                </p>
               </div>
 
               <div>
@@ -166,9 +252,17 @@ const submitForm = async () => {
                   v-model="form.email"
                   type="email"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91] transition-colors"
+                  :class="[
+                    'w-full px-4 py-3 border rounded-lg focus:ring-2 transition-colors',
+                    fieldErrors.email 
+                      ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
+                      : 'border-gray-300 focus:ring-[#489f91] focus:border-[#489f91]'
+                  ]"
                   placeholder="example@domain.com"
                 />
+                <p v-if="fieldErrors.email" class="mt-1 text-sm text-red-600">
+                  {{ fieldErrors.email }}
+                </p>
               </div>
 
               <div>
@@ -199,9 +293,17 @@ const submitForm = async () => {
                   v-model="form.message"
                   rows="5"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#489f91] focus:border-[#489f91] transition-colors"
+                  :class="[
+                    'w-full px-4 py-3 border rounded-lg focus:ring-2 transition-colors',
+                    fieldErrors.message 
+                      ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
+                      : 'border-gray-300 focus:ring-[#489f91] focus:border-[#489f91]'
+                  ]"
                   placeholder="اكتب رسالتك هنا..."
                 ></textarea>
+                <p v-if="fieldErrors.message" class="mt-1 text-sm text-red-600">
+                  {{ fieldErrors.message }}
+                </p>
               </div>
 
               <button

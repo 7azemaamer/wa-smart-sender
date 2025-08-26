@@ -428,7 +428,7 @@ const advantages = [
           </a>
         </div>
         <p class="text-sm opacity-75">
-          <i class="pi pi-check text-white me-1"></i> انتقال مجاني للبيانات | <i class="pi pi-check text-white me-1"></i> دعم كامل أثناء الانتقال | <i class="pi pi-check text-white me-1"></i> ضمان الرضا 14 يوم
+          <i class="pi pi-check text-white me-1"></i> انتقال مجاني للبيانات | <i class="pi pi-check text-white me-1"></i> دعم كامل أثناء الانتقال | <i class="pi pi-check text-white me-1"></i> ضمان الرضا 7 يوم
         </p>
       </div>
     </section>

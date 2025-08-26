@@ -1,100 +1,41 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import AppSEO from '@/components/common/AppSEO.vue'
 import SectionHeading from '@/components/common/SectionHeading.vue'
 import CTAInline from '@/components/common/CTAInline.vue'
+import ApiService from '@/utils/api.js'
 
-const guides = [
-  {
-    id: 1,
-    title: 'دليل البدء السريع',
-    description: 'تعلم كيفية تثبيت وإعداد WA Smart Sender في 5 دقائق',
-    icon: 'pi pi-play-circle',
-    difficulty: 'مبتدئ',
-    duration: '5 دقائق',
-    steps: 4,
-    link: '#quick-start'
-  },
-  {
-    id: 2,
-    title: 'إعداد الإرسال الجماعي الآمن',
-    description: 'كيفية إعداد حملة إرسال جماعي مع تجنب الحظر',
-    icon: 'pi pi-send',
-    difficulty: 'متوسط',
-    duration: '10 دقائق',
-    steps: 6,
-    link: '#bulk-sending'
-  },
-  {
-    id: 3,
-    title: 'تخصيص الردود التلقائية',
-    description: 'إنشاء ردود ذكية تتفاعل مع استفسارات العملاء',
-    icon: 'pi pi-cog',
-    difficulty: 'متوسط',
-    duration: '8 دقائق',
-    steps: 5,
-    link: '#auto-replies'
-  },
-  {
-    id: 4,
-    title: 'استخدام متغيرات الرسائل',
-    description: 'تخصيص الرسائل باستخدام [الاسم] و{التاريخ} ومتغيرات أخرى',
-    icon: 'pi pi-code',
-    difficulty: 'متقدم',
-    duration: '12 دقائق',
-    steps: 7,
-    link: '#message-variables'
-  },
-  {
-    id: 5,
-    title: 'قراءة التقارير والإحصائيات',
-    description: 'فهم وتحليل تقارير الأداء لتحسين حملاتك',
-    icon: 'pi pi-chart-line',
-    difficulty: 'متوسط',
-    duration: '6 دقائق',
-    steps: 4,
-    link: '#reports'
-  },
-  {
-    id: 6,
-    title: 'إدارة الأرقام المحظورة',
-    description: 'حماية سمعتك من خلال إدارة قوائم الأرقام المحظورة',
-    icon: 'pi pi-ban',
-    difficulty: 'مبتدئ',
-    duration: '4 دقائق',
-    steps: 3,
-    link: '#blocked-numbers'
-  }
-]
+const guides = ref([])
+const loading = ref(true)
+const error = ref(null)
 
-const videoGuides = [
-  {
-    id: 1,
-    title: 'شرح شامل للإرسال الجماعي',
-    description: 'فيديو تعليمي كامل يوضح جميع خطوات الإرسال الجماعي',
-    thumbnail: '/videos/bulk-sending-thumb.jpg',
-    duration: '15:30',
-    views: '2,450',
-    link: 'https://youtube.com/watch?v=example1'
-  },
-  {
-    id: 2,
-    title: 'إعداد الردود التلقائية بالذكاء الاصطناعي',
-    description: 'كيفية تفعيل واستخدام الردود الذكية المدعومة بالـ AI',
-    thumbnail: '/videos/ai-replies-thumb.jpg',
-    duration: '12:15',
-    views: '1,890',
-    link: 'https://youtube.com/watch?v=example2'
-  },
-  {
-    id: 3,
-    title: 'تحليل التقارير وتحسين الأداء',
-    description: 'شرح مفصل لقراءة التقارير واستخدامها لتحسين النتائج',
-    thumbnail: '/videos/reports-thumb.jpg',
-    duration: '10:45',
-    views: '1,230',
-    link: 'https://youtube.com/watch?v=example3'
+const videoGuides = ref([])
+
+// Fetch guides from Strapi
+const fetchGuides = async () => {
+  try {
+    loading.value = true
+    error.value = null
+    const [guidesResponse, videoGuidesResponse] = await Promise.all([
+      ApiService.getGuides(),
+      ApiService.getVideoGuides()
+    ])
+    guides.value = guidesResponse.data.map(guide => ApiService.formatGuide(guide))
+    videoGuides.value = videoGuidesResponse.data.map(videoGuide => ApiService.formatVideoGuide(videoGuide))
+  } catch (err) {
+    error.value = 'حدث خطأ في تحميل الأدلة'
+    console.error('Error fetching guides:', err)
+    // Fallback to empty arrays if API fails
+    guides.value = []
+    videoGuides.value = []
+  } finally {
+    loading.value = false
   }
-]
+}
+
+onMounted(() => {
+  fetchGuides()
+})
 </script>
 
 <template>
@@ -144,7 +85,27 @@ const videoGuides = [
           <div class="w-16 h-1 bg-[#489f91] rounded"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Loading State -->
+        <div v-if="loading" class="text-center py-16">
+          <i class="pi pi-spinner pi-spin text-6xl text-[#489f91] mb-6"></i>
+          <h3 class="text-2xl font-semibold text-gray-700 mb-4">
+            جاري تحميل الأدلة...
+          </h3>
+        </div>
+
+        <!-- Error State -->
+        <div v-else-if="error" class="text-center py-16">
+          <i class="pi pi-exclamation-triangle text-6xl text-red-500 mb-6"></i>
+          <h3 class="text-2xl font-semibold text-gray-700 mb-4">
+            {{ error }}
+          </h3>
+          <button @click="fetchGuides" class="btn btn-primary">
+            <i class="pi pi-refresh me-2"></i>
+            إعادة المحاولة
+          </button>
+        </div>
+
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <article
             v-for="guide in guides"
             :key="guide.id"
@@ -178,13 +139,13 @@ const videoGuides = [
                 </span>
               </div>
 
-              <a
-                :href="guide.link"
+              <router-link
+                :to="`/guides/${guide.slug}`"
                 class="inline-flex items-center text-[#489f91] hover:text-green-700 font-medium"
               >
                 ابدأ الدليل
                 <i class="pi pi-arrow-left ms-2"></i>
-              </a>
+              </router-link>
             </div>
           </article>
         </div>
@@ -205,21 +166,24 @@ const videoGuides = [
             :key="video.id"
             class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group relative"
           >
-            <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-              <!-- Background video placeholder -->
-              <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+            <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
+              <!-- Video thumbnail or placeholder -->
+              <img 
+                v-if="video.thumbnail && video.thumbnail !== '/images/placeholder.jpg' && !video.isComingSoon"
+                :src="video.thumbnail"
+                :alt="video.title"
+                class="w-full h-full object-cover"
+                @error="$event.target.style.display = 'none'"
+              />
+              <div v-else class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
                 <i class="pi pi-play text-4xl text-white opacity-50"></i>
               </div>
-              <div class="text-center text-gray-500">
-                <i class="pi pi-video text-3xl mb-2"></i>
-                <p class="text-xs">{{ video.thumbnail }}</p>
-              </div>
-              <div class="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm opacity-50">
+              <div class="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm">
                 {{ video.duration }}
               </div>
               
-              <!-- Cool Blurry Overlay -->
-              <div class="absolute inset-0 backdrop-blur-sm bg-white/30 border-2 border-white/50 flex flex-col items-center justify-center transition-all duration-300 group-hover:backdrop-blur-md group-hover:bg-white/40">
+              <!-- Cool Blurry Overlay - Only show if coming soon -->
+              <div v-if="video.isComingSoon" class="absolute inset-0 backdrop-blur-sm bg-white/30 border-2 border-white/50 flex flex-col items-center justify-center transition-all duration-300 group-hover:backdrop-blur-md group-hover:bg-white/40">
                 <!-- Animated lock icon -->
                 <div class="relative mb-4">
                   <i class="pi pi-lock text-4xl text-gray-700 group-hover:animate-bounce"></i>
@@ -253,12 +217,22 @@ const videoGuides = [
                   {{ video.views }} مشاهدة
                 </span>
                 <button
+                  v-if="video.isComingSoon"
                   class="inline-flex items-center text-gray-400 cursor-not-allowed font-medium opacity-50"
                   disabled
                 >
                   شاهد الفيديو
                   <i class="pi pi-lock ms-2"></i>
                 </button>
+                <a
+                  v-else
+                  :href="video.videoUrl"
+                  target="_blank"
+                  class="inline-flex items-center text-red-600 hover:text-red-700 font-medium"
+                >
+                  شاهد الفيديو
+                  <i class="pi pi-external-link ms-2"></i>
+                </a>
               </div>
             </div>
           </article>

@@ -1,88 +1,13 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { RouterLink } from "vue-router";
 import AppSEO from "@/components/common/AppSEO.vue";
 import SectionHeading from "@/components/common/SectionHeading.vue";
+import ApiService from "@/utils/api.js";
 
-const posts = ref([
-  {
-    id: 1,
-    title: "أمان الإرسال الجماعي في واتساب للأعمال: دليل شامل",
-    slug: "whatsapp-bulk-safety-guide",
-    excerpt:
-      "كيف تُرسل رسائل جماعية بأمان دون حظر؟ أفضل الممارسات والإعدادات داخل WA Smart Sender.",
-    date: "2025-08-24",
-    tags: ["واتساب", "أمان", "WA Smart Sender"],
-    cover: "/blog/whatsapp-bulk-safety/cover.jpg",
-    readTime: "5 دقائق",
-    author: "Hazem Aamer",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "القوالب الجاهزة لأتمتة الردود بالعربية",
-    slug: "arabic-templates-auto-replies",
-    excerpt:
-      "مجموعة من أفضل قوالب الردود التلقائية باللغة العربية لتحسين تفاعل العملاء.",
-    date: "2025-08-20",
-    tags: ["قوالب", "ردود تلقائية", "خدمة العملاء"],
-    cover: "/blog/arabic-templates/cover.jpg",
-    readTime: "7 دقائق",
-    author: "Hazem Aamer",
-    featured: false,
-  },
-  {
-    id: 3,
-    title: "أفضل ممارسات التقارير وتتبع الأداء",
-    slug: "was-reports-best-practices",
-    excerpt:
-      "كيفية قراءة وتحليل تقارير WA Smart Sender لتحسين حملاتك التسويقية.",
-    date: "2025-08-18",
-    tags: ["تقارير", "تحليلات", "أداء"],
-    cover: "/blog/reports-best-practices/cover.jpg",
-    readTime: "6 دقائق",
-    author: "Hazem Aamer",
-    featured: true,
-  },
-  {
-    id: 4,
-    title: "الفرق بين الردود بالكلمات المفتاحية والردود بالذكاء الاصطناعي",
-    slug: "keyword-vs-ai-replies",
-    excerpt:
-      "دليل مقارن لفهم متى تستخدم الردود بالكلمات المفتاحية أو الذكاء الاصطناعي.",
-    date: "2025-08-15",
-    tags: ["ذكاء اصطناعي", "ردود تلقائية", "مقارنة"],
-    cover: "/blog/keyword-vs-ai/cover.jpg",
-    readTime: "4 دقائق",
-    author: "Hazem Aamer",
-    featured: false,
-  },
-  {
-    id: 5,
-    title: "كيف تنظّف قوائم الأرقام وتزيل التكرارات",
-    slug: "clean-numbers-deduplicate",
-    excerpt:
-      "خطوات عملية لتنظيف قوائم الأرقام وإزالة المكررات والأرقام غير الصحيحة.",
-    date: "2025-08-12",
-    tags: ["إدارة البيانات", "تنظيف", "أرقام"],
-    cover: "/blog/clean-numbers/cover.jpg",
-    readTime: "5 دقائق",
-    author: "Hazem Aamer",
-    featured: false,
-  },
-  {
-    id: 6,
-    title: "إرسال كتالوج المنتجات في واتساب خطوة بخطوة",
-    slug: "send-catalog-messages",
-    excerpt: "دليل تفصيلي لإنشاء وإرسال كتالوجات المنتجات عبر واتساب بفعالية.",
-    date: "2025-08-10",
-    tags: ["كتالوج", "منتجات", "تسويق"],
-    cover: "/blog/catalog-messages/cover.jpg",
-    readTime: "8 دقائق",
-    author: "Hazem Aamer",
-    featured: false,
-  },
-]);
+const posts = ref([]);
+const loading = ref(true);
+const error = ref(null);
 
 const selectedTag = ref("");
 const searchQuery = ref("");
@@ -123,6 +48,27 @@ const clearFilters = () => {
   selectedTag.value = "";
   searchQuery.value = "";
 };
+
+// Fetch articles from Strapi
+const fetchArticles = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await ApiService.getArticles();
+    posts.value = response.data.map(article => ApiService.formatArticle(article));
+  } catch (err) {
+    error.value = 'حدث خطأ في تحميل المقالات';
+    console.error('Error fetching articles:', err);
+    // Fallback to empty array if API fails
+    posts.value = [];
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(() => {
+  fetchArticles();
+});
 </script>
 
 <template>
@@ -222,18 +168,25 @@ const clearFilters = () => {
             class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow group"
           >
             <div
-              class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center"
+              class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden"
             >
-              <div class="text-center text-gray-500">
+              <img 
+                v-if="post.cover && post.cover !== '/images/placeholder.jpg'"
+                :src="post.cover"
+                :alt="post.title"
+                class="w-full h-full object-cover"
+                @error="$event.target.style.display = 'none'"
+              />
+              <div v-else class="text-center text-gray-500">
                 <i class="pi pi-image text-4xl mb-4"></i>
-                <p>{{ post.cover }}</p>
+                <p>صورة المقال</p>
               </div>
             </div>
             <div class="p-8">
               <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
                 <span class="flex items-center">
                   <i class="pi pi-calendar me-2"></i>
-                  {{ new Date(post.date).toLocaleDateString("ar-SA") }}
+                  {{ new Date(post.publishedDate).toLocaleDateString("ar-SA") }}
                 </span>
                 <span class="flex items-center">
                   <i class="pi pi-clock me-2"></i>
@@ -282,10 +235,31 @@ const clearFilters = () => {
           <h2 class="text-3xl font-bold text-gray-900">
             {{ selectedTag || searchQuery ? "نتائج البحث" : "جميع المقالات" }}
           </h2>
-          <span class="text-gray-600">{{ filteredPosts.length }} مقال</span>
+          <span class="text-gray-600" v-if="!loading">{{ filteredPosts.length }} مقال</span>
         </div>
 
-        <div v-if="filteredPosts.length === 0" class="text-center py-16">
+        <!-- Loading State -->
+        <div v-if="loading" class="text-center py-16">
+          <i class="pi pi-spinner pi-spin text-6xl text-[#489f91] mb-6"></i>
+          <h3 class="text-2xl font-semibold text-gray-700 mb-4">
+            جاري تحميل المقالات...
+          </h3>
+        </div>
+
+        <!-- Error State -->
+        <div v-else-if="error" class="text-center py-16">
+          <i class="pi pi-exclamation-triangle text-6xl text-red-500 mb-6"></i>
+          <h3 class="text-2xl font-semibold text-gray-700 mb-4">
+            {{ error }}
+          </h3>
+          <button @click="fetchArticles" class="btn btn-primary">
+            <i class="pi pi-refresh me-2"></i>
+            إعادة المحاولة
+          </button>
+        </div>
+
+        <!-- No Results -->
+        <div v-else-if="filteredPosts.length === 0" class="text-center py-16">
           <i class="pi pi-search text-6xl text-gray-400 mb-6"></i>
           <h3 class="text-2xl font-semibold text-gray-700 mb-4">
             لم نجد أي مقالات
@@ -307,11 +281,18 @@ const clearFilters = () => {
             class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow group"
           >
             <div
-              class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center"
+              class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden"
             >
-              <div class="text-center text-gray-500">
+              <img 
+                v-if="post.cover && post.cover !== '/images/placeholder.jpg'"
+                :src="post.cover"
+                :alt="post.title"
+                class="w-full h-full object-cover"
+                @error="$event.target.style.display = 'none'"
+              />
+              <div v-else class="text-center text-gray-500">
                 <i class="pi pi-image text-3xl mb-2"></i>
-                <p class="text-xs">{{ post.cover }}</p>
+                <p class="text-xs">صورة المقال</p>
               </div>
             </div>
 
@@ -319,7 +300,7 @@ const clearFilters = () => {
               <div class="flex items-center gap-3 text-xs text-gray-600 mb-3">
                 <span class="flex items-center">
                   <i class="pi pi-calendar me-1"></i>
-                  {{ new Date(post.date).toLocaleDateString("ar-SA") }}
+                  {{ new Date(post.publishedDate).toLocaleDateString("ar-SA") }}
                 </span>
                 <span class="flex items-center">
                   <i class="pi pi-clock me-1"></i>
