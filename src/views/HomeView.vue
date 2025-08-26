@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from "vue";
 import AppSEO from "@/components/common/AppSEO.vue";
 import Hero from "@/components/common/Hero.vue";
 import How from "@/components/common/How.vue";
@@ -10,39 +11,29 @@ import { RouterLink } from "vue-router";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "@/assets/swiper-custom.css";
+import ApiService from "@/utils/api.js";
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "أمان الإرسال الجماعي في واتساب للأعمال: دليل شامل",
-    excerpt:
-      "كيف تُرسل رسائل جماعية بأمان دون حظر؟ أفضل الممارسات والإعدادات داخل WA Smart Sender.",
-    date: "2025-01-20",
-    readTime: "5 دقائق",
-    image: "/blog/whatsapp-bulk-safety.jpg",
-    slug: "whatsapp-bulk-safety-guide",
-  },
-  {
-    id: 2,
-    title: "القوالب الجاهزة لأتمتة الردود بالعربية",
-    excerpt:
-      "مجموعة شاملة من قوالب الردود التلقائية المُحسنة للسوق العربي مع أمثلة عملية.",
-    date: "2025-01-18",
-    readTime: "7 دقائق",
-    image: "/blog/arabic-templates.jpg",
-    slug: "arabic-auto-reply-templates",
-  },
-  {
-    id: 3,
-    title: "أفضل ممارسات التقارير وتتبع الأداء",
-    excerpt:
-      "كيفية قراءة وتحليل تقارير الأداء لتحسين نتائج حملاتك التسويقية على واتساب.",
-    date: "2025-01-15",
-    readTime: "6 دقائق",
-    image: "/blog/performance-reports.jpg",
-    slug: "performance-tracking-best-practices",
-  },
-];
+const blogPosts = ref([]);
+const blogLoading = ref(true);
+
+const fetchLatestPosts = async () => {
+  try {
+    blogLoading.value = true;
+    const response = await ApiService.getArticles({
+      'pagination[limit]': 3,
+      'sort[0]': 'publishedDate:desc'
+    });
+    
+    if (response.data && response.data.length > 0) {
+      blogPosts.value = response.data.map(article => ApiService.formatArticle(article));
+    }
+  } catch (error) {
+    console.error('Error fetching latest blog posts:', error);
+    blogPosts.value = [];
+  } finally {
+    blogLoading.value = false;
+  }
+};
 
 const keyFeatures = [
   {
@@ -197,6 +188,10 @@ const swiperOptions = {
     },
   },
 };
+
+onMounted(() => {
+  fetchLatestPosts();
+});
 </script>
 
 <template>
@@ -356,7 +351,25 @@ const swiperOptions = {
           </RouterLink>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Loading State -->
+        <div v-if="blogLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div v-for="n in 3" :key="n" class="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
+            <div class="h-48 bg-gray-200"></div>
+            <div class="p-6">
+              <div class="flex gap-4 mb-3">
+                <div class="h-4 bg-gray-200 rounded w-20"></div>
+                <div class="h-4 bg-gray-200 rounded w-16"></div>
+              </div>
+              <div class="h-6 bg-gray-200 rounded mb-3"></div>
+              <div class="h-4 bg-gray-200 rounded mb-2"></div>
+              <div class="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
+              <div class="h-4 bg-gray-200 rounded w-24"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Posts -->
+        <div v-else-if="blogPosts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <article
             v-for="post in blogPosts"
             :key="post.id"
@@ -365,9 +378,16 @@ const swiperOptions = {
             <div
               class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden"
             >
-              <div class="text-center text-gray-500">
+              <img 
+                v-if="post.cover && post.cover !== '/images/placeholder.jpg'"
+                :src="post.cover"
+                :alt="post.title"
+                class="w-full h-full object-cover"
+                @error="$event.target.style.display = 'none'"
+              />
+              <div v-else class="text-center text-gray-500">
                 <i class="pi pi-file-text text-3xl mb-2"></i>
-                <p class="text-xs">{{ post.image }}</p>
+                <p class="text-xs">صورة المقال</p>
               </div>
               <!-- Hover overlay -->
               <div
@@ -379,7 +399,7 @@ const swiperOptions = {
               <div class="flex items-center gap-4 text-xs text-gray-500 mb-3">
                 <span class="flex items-center">
                   <i class="pi pi-calendar me-1"></i>
-                  {{ new Date(post.date).toLocaleDateString("ar-SA") }}
+                  {{ new Date(post.publishedDate).toLocaleDateString("ar-SA") }}
                 </span>
                 <span class="flex items-center">
                   <i class="pi pi-clock me-1"></i>
@@ -406,6 +426,15 @@ const swiperOptions = {
               </RouterLink>
             </div>
           </article>
+        </div>
+
+        <!-- No Posts State -->
+        <div v-else class="text-center py-16">
+          <i class="pi pi-file-text text-6xl text-gray-400 mb-6"></i>
+          <h3 class="text-2xl font-semibold text-gray-700 mb-4">
+            لا توجد مقالات متاحة حالياً
+          </h3>
+          <p class="text-gray-600">سيتم إضافة المقالات قريباً</p>
         </div>
 
         <div class="text-center mt-8 md:hidden">

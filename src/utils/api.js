@@ -20,7 +20,10 @@ class ApiService {
   // Articles API
   async getArticles(params = {}) {
     const queryParams = new URLSearchParams(params).toString();
-    return this.get(`/articles?populate=*&${queryParams}`);
+    const url = queryParams 
+      ? `/articles?populate=*&${queryParams}`
+      : '/articles?populate=*';
+    return this.get(url);
   }
 
   async getArticle(slug) {

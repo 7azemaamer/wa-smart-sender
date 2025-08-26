@@ -72,6 +72,39 @@ const extractHeadings = () => {
   headings.value = extractedHeadings;
 };
 
+const shareOnFacebook = () => {
+  if (!post.value) return;
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+};
+
+const shareOnTwitter = () => {
+  if (!post.value) return;
+  const url = encodeURIComponent(window.location.href);
+  const title = encodeURIComponent(post.value.title);
+  window.open(`https://x.com/intent/tweet?text=${title}&url=${url}`, '_blank');
+};
+
+const shareOnWhatsApp = () => {
+  if (!post.value) return;
+  const url = encodeURIComponent(window.location.href);
+  const title = encodeURIComponent(post.value.title);
+  window.open(`https://api.whatsapp.com/send?text=${title}%20${url}`, '_blank');
+};
+
+const shareOnLinkedIn = () => {
+  if (!post.value) return;
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+};
+
+const copyToClipboard = async () => {
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+  } catch (err) {
+  }
+};
+
 onMounted(() => {
   fetchArticle();
 });
@@ -227,28 +260,40 @@ onMounted(() => {
               </h3>
               <div class="flex flex-wrap gap-2 md:gap-4">
                 <button
-                  class="flex items-center gap-1 md:gap-2 bg-[#489f91] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors text-sm md:text-base"
+                  @click="shareOnFacebook"
+                  class="flex items-center gap-1 md:gap-2 bg-[#1877F2] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#166fe5] transition-colors text-sm md:text-base"
                 >
                   <i class="pi pi-facebook"></i>
                   <span class="hidden sm:inline">فيسبوك</span>
                 </button>
                 <button
-                  class="flex items-center gap-1 md:gap-2 bg-[#489f91] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors text-sm md:text-base"
+                  @click="shareOnTwitter"
+                  class="flex items-center gap-1 md:gap-2 bg-[#1DA1F2] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#1a94da] transition-colors text-sm md:text-base"
                 >
                   <i class="pi pi-twitter"></i>
                   <span class="hidden sm:inline">تويتر</span>
                 </button>
                 <button
-                  class="flex items-center gap-1 md:gap-2 bg-[#489f91] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors text-sm md:text-base"
+                  @click="shareOnWhatsApp"
+                  class="flex items-center gap-1 md:gap-2 bg-[#25D366] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#22c35e] transition-colors text-sm md:text-base"
                 >
                   <i class="pi pi-whatsapp"></i>
                   <span class="hidden sm:inline">واتساب</span>
                 </button>
                 <button
-                  class="flex items-center gap-1 md:gap-2 bg-[#489f91] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#489f91] transition-colors text-sm md:text-base"
+                  @click="shareOnLinkedIn"
+                  class="flex items-center gap-1 md:gap-2 bg-[#0077B5] text-white px-2 md:px-4 py-2 rounded-lg hover:bg-[#006ba1] transition-colors text-sm md:text-base"
                 >
                   <i class="pi pi-linkedin"></i>
                   <span class="hidden sm:inline">لينكد إن</span>
+                </button>
+                <button
+                  @click="copyToClipboard"
+                  class="flex items-center gap-1 md:gap-2 bg-gray-600 text-white px-2 md:px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm md:text-base"
+                  title="نسخ الرابط"
+                >
+                  <i class="pi pi-copy"></i>
+                  <span class="hidden sm:inline">نسخ الرابط</span>
                 </button>
               </div>
             </div>
