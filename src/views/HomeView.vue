@@ -20,15 +20,17 @@ const fetchLatestPosts = async () => {
   try {
     blogLoading.value = true;
     const response = await ApiService.getArticles({
-      'pagination[limit]': 3,
-      'sort[0]': 'publishedDate:desc'
+      "pagination[limit]": 3,
+      "sort[0]": "publishedDate:desc",
     });
-    
+
     if (response.data && response.data.length > 0) {
-      blogPosts.value = response.data.map(article => ApiService.formatArticle(article));
+      blogPosts.value = response.data.map((article) =>
+        ApiService.formatArticle(article)
+      );
     }
   } catch (error) {
-    console.error('Error fetching latest blog posts:', error);
+    console.error("Error fetching latest blog posts:", error);
     blogPosts.value = [];
   } finally {
     blogLoading.value = false;
@@ -352,8 +354,15 @@ onMounted(() => {
         </div>
 
         <!-- Loading State -->
-        <div v-if="blogLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="n in 3" :key="n" class="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
+        <div
+          v-if="blogLoading"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <div
+            v-for="n in 3"
+            :key="n"
+            class="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse"
+          >
             <div class="h-48 bg-gray-200"></div>
             <div class="p-6">
               <div class="flex gap-4 mb-3">
@@ -369,7 +378,10 @@ onMounted(() => {
         </div>
 
         <!-- Blog Posts -->
-        <div v-else-if="blogPosts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          v-else-if="blogPosts.length > 0"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           <article
             v-for="post in blogPosts"
             :key="post.id"
@@ -378,7 +390,7 @@ onMounted(() => {
             <div
               class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden"
             >
-              <img 
+              <img
                 v-if="post.cover && post.cover !== '/images/placeholder.jpg'"
                 :src="post.cover"
                 :alt="post.title"
@@ -390,9 +402,6 @@ onMounted(() => {
                 <p class="text-xs">صورة المقال</p>
               </div>
               <!-- Hover overlay -->
-              <div
-                class="absolute inset-0 bg-[#489f91] bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"
-              ></div>
             </div>
 
             <div class="p-6">
@@ -406,12 +415,16 @@ onMounted(() => {
                   {{ post.readTime }}
                 </span>
               </div>
-
-              <h3
-                class="text-lg font-semibold text-gray-900 mb-3 group-hover:text-[#489f91] transition-colors leading-tight"
+              <RouterLink
+                :to="`/blog/${post.slug}`"
+                class="inline-flex items-center text-[#489f91] hover:text-[#3a7a6f] font-medium text-sm transition-colors"
               >
-                {{ post.title }}
-              </h3>
+                <h3
+                  class="text-lg font-semibold text-gray-900 mb-3 group-hover:text-[#489f91] transition-colors leading-tight"
+                >
+                  {{ post.title }}
+                </h3>
+              </RouterLink>
 
               <p class="text-gray-600 text-sm leading-relaxed mb-4">
                 {{ post.excerpt }}
