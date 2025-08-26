@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
+import { RouterLink } from "vue-router";
 import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 
@@ -200,13 +201,14 @@ const handleCTAHover = (event, isEntering) => {
           <span>جرّبه مجانًا الآن</span>
         </a>
 
-        <button
+        <RouterLink
+          to="/guides"
           class="btn btn-secondary text-lg px-8 py-4"
           @mouseenter="(e) => handleCTAHover(e, true)"
           @mouseleave="(e) => handleCTAHover(e, false)"
         >
           <span>شاهد العرض التوضيحي</span>
-        </button>
+        </RouterLink>
       </div>
 
       <div ref="trustRef" class="mt-16 opacity-60">

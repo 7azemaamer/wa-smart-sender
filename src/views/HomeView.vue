@@ -401,7 +401,6 @@ onMounted(() => {
                 <i class="pi pi-file-text text-3xl mb-2"></i>
                 <p class="text-xs">صورة المقال</p>
               </div>
-              <!-- Hover overlay -->
             </div>
 
             <div class="p-6">
