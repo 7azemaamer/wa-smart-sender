@@ -1,9 +1,8 @@
 <script setup>
-import { RouterLink } from 'vue-router'
-import { inject } from 'vue'
-import { formatPrice } from '@/constants/pricing.js'
+import { inject, computed } from 'vue'
+import { CURRENCY_RATES, convertPrice } from '@/constants/pricing.js'
 
-defineProps({
+const props = defineProps({
   plan: {
     type: Object,
     required: true
@@ -11,34 +10,28 @@ defineProps({
 })
 
 const selectedCurrency = inject('globalCurrency')
+const billingPeriod = inject('billingPeriod')
 
-const getCurrencyPrice = (plan, currency) => {
-  switch(currency) {
-    case 'SAR': return plan.price_sar
-    case 'EGP': return plan.price_egp  
-    case 'USD':
-    default: return plan.price_usd
-  }
-}
+const currencySymbol = computed(() => {
+  return CURRENCY_RATES[selectedCurrency.value]?.symbol || '$'
+})
 
-const getOldPrice = (plan, currency) => {
-  if (!plan.old_price_usd) return null
-  switch(currency) {
-    case 'SAR': return Math.round(plan.old_price_usd * 3.75 * 100) / 100
-    case 'EGP': return Math.round(plan.old_price_usd * 48 * 100) / 100
-    case 'USD':
-    default: return plan.old_price_usd
-  }
-}
+const currentPrice = computed(() => {
+  const usdPrice = billingPeriod.value === 'annual'
+    ? props.plan.annualPrice
+    : props.plan.monthlyPrice
+  return convertPrice(usdPrice, selectedCurrency.value)
+})
 
-const getCurrencySymbol = (currency) => {
-  switch(currency) {
-    case 'SAR': return 'ر.س'
-    case 'EGP': return 'ج.م'
-    case 'USD':
-    default: return '$'
-  }
-}
+const originalPrice = computed(() => {
+  if (billingPeriod.value !== 'annual') return null
+  const usdOriginal = props.plan.monthlyPrice * 12
+  return convertPrice(usdOriginal, selectedCurrency.value)
+})
+
+const periodLabel = computed(() => {
+  return billingPeriod.value === 'annual' ? 'سنة' : 'شهر'
+})
 </script>
 
 <template>
@@ -56,28 +49,40 @@ const getCurrencySymbol = (currency) => {
       </span>
     </div>
 
+    <!-- Annual Discount Badge -->
+    <div
+      v-if="billingPeriod === 'annual' && plan.annualDiscount"
+      class="absolute -top-3 right-4"
+    >
+      <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
+        خصم {{ plan.annualDiscount }}%
+      </span>
+    </div>
+
     <div class="p-8">
       <!-- Plan Header -->
       <div class="text-center mb-6">
         <h3 class="text-xl font-bold text-gray-900 mb-4">{{ plan.nameAr || plan.name }}</h3>
-        
+
         <div class="flex items-baseline justify-center mb-4">
           <div class="flex flex-col items-center">
-            <div class="flex items-baseline">
-              <span v-if="getOldPrice(plan, selectedCurrency)" class="text-lg text-gray-400 line-through me-2">
-                {{ getCurrencySymbol(selectedCurrency) }}{{ getOldPrice(plan, selectedCurrency) }}
+            <div class="flex items-baseline gap-2">
+              <span v-if="originalPrice" class="text-lg text-gray-400 line-through">
+                {{ currencySymbol }}{{ originalPrice.toLocaleString() }}
               </span>
-              <span class="text-4xl font-bold text-gray-900">{{ getCurrencyPrice(plan, selectedCurrency) }}</span>
-              <span class="text-gray-600 ms-2 text-lg">{{ getCurrencySymbol(selectedCurrency) }}</span>
             </div>
-            <span class="text-gray-600 text-sm mt-1">/{{ plan.durationAr || plan.duration || 'شهر' }}</span>
+            <div class="flex items-baseline">
+              <span class="text-4xl font-bold text-gray-900">{{ currentPrice.toLocaleString() }}</span>
+              <span class="text-gray-600 ms-2 text-lg">{{ currencySymbol }}</span>
+            </div>
+            <span class="text-gray-600 text-sm mt-1">/{{ periodLabel }}</span>
           </div>
         </div>
-        
+
         <!-- Main Features -->
         <div class="mb-6">
           <div class="flex flex-wrap justify-center gap-2 mb-4">
-            <span 
+            <span
               v-for="(feature, index) in (plan.main_features_ar || plan.main_features)"
               :key="index"
               class="bg-green-50 text-[#489f91] px-3 py-1 rounded-full text-sm font-medium"
@@ -91,7 +96,7 @@ const getCurrencySymbol = (currency) => {
       <!-- Features List -->
       <ul class="space-y-3 mb-8 max-h-48 overflow-y-auto">
         <li
-          v-for="(feature, index) in (plan.extra_features_ar || plan.extra_features || plan.features)"
+          v-for="(feature, index) in (plan.extra_features_ar || plan.extra_features)"
           :key="index"
           class="flex items-start"
         >
@@ -101,8 +106,9 @@ const getCurrencySymbol = (currency) => {
       </ul>
 
       <!-- CTA Button -->
-      <RouterLink
-        :to="plan.buttonLink || '/contact'"
+      <a
+        :href="plan.buttonLink || 'https://chromewebstore.google.com/detail/wa-smart-sender/ckibonklempheenficakknnojmemhhcj'"
+        target="_blank"
         :class="[
           'w-full inline-flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105',
           plan.popular
@@ -112,7 +118,7 @@ const getCurrencySymbol = (currency) => {
       >
         <i class="pi pi-arrow-left me-2"></i>
         {{ plan.buttonText || 'ابدأ الآن' }}
-      </RouterLink>
+      </a>
     </div>
   </div>
 </template>
