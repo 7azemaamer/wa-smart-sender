@@ -54,7 +54,7 @@ const fetchArticles = async () => {
   try {
     loading.value = true;
     error.value = null;
-    const response = await ApiService.getArticles();
+    const response = await ApiService.getArticles({ "sort[0]": "publishedDate:desc" });
     posts.value = response.data.map(article => ApiService.formatArticle(article));
   } catch (err) {
     error.value = 'حدث خطأ في تحميل المقالات';
