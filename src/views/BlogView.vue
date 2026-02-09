@@ -162,68 +162,70 @@ onMounted(() => {
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <article
+          <RouterLink
             v-for="post in featuredPosts.slice(0, 2)"
             :key="post.id"
-            class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow group"
+            :to="`/blog/${post.slug}`"
+            class="block bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:-translate-y-1 cursor-pointer"
           >
-            <div
-              class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden"
-            >
-              <img 
-                v-if="post.cover && post.cover !== '/images/placeholder.jpg'"
-                :src="post.cover"
-                :alt="post.title"
-                class="w-full h-full object-cover"
-                @error="$event.target.style.display = 'none'"
-              />
-              <div v-else class="text-center text-gray-500">
-                <i class="pi pi-image text-4xl mb-4"></i>
-                <p>صورة المقال</p>
-              </div>
-            </div>
-            <div class="p-8">
-              <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                <span class="flex items-center">
-                  <i class="pi pi-calendar me-2"></i>
-                  {{ new Date(post.publishedDate).toLocaleDateString("ar-SA") }}
-                </span>
-                <span class="flex items-center">
-                  <i class="pi pi-clock me-2"></i>
-                  {{ post.readTime }}
-                </span>
-              </div>
-
-              <h3
-                class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#489f91] transition-colors leading-tight"
+            <article>
+              <div
+                class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden"
               >
-                {{ post.title }}
-              </h3>
-
-              <p class="text-gray-600 mb-6 leading-relaxed">
-                {{ post.excerpt }}
-              </p>
-
-              <div class="flex items-center justify-between">
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    v-for="tag in post.tags.slice(0, 2)"
-                    :key="tag"
-                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                  >
-                    {{ tag }}
+                <img 
+                  v-if="post.cover && post.cover !== '/images/placeholder.jpg'"
+                  :src="post.cover"
+                  :alt="post.title"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  @error="$event.target.style.display = 'none'"
+                />
+                <div v-else class="text-center text-gray-500">
+                  <i class="pi pi-image text-4xl mb-4"></i>
+                  <p>صورة المقال</p>
+                </div>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                  <span class="flex items-center">
+                    <i class="pi pi-calendar me-2"></i>
+                    {{ new Date(post.publishedDate).toLocaleDateString("ar-SA") }}
+                  </span>
+                  <span class="flex items-center">
+                    <i class="pi pi-clock me-2"></i>
+                    {{ post.readTime }}
                   </span>
                 </div>
-                <RouterLink
-                  :to="`/blog/${post.slug}`"
-                  class="inline-flex items-center text-[#489f91] hover:text-[#489f91] font-medium"
+
+                <h3
+                  class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#489f91] transition-colors leading-tight"
                 >
-                  اقرأ المزيد
-                  <i class="pi pi-arrow-left ms-2"></i>
-                </RouterLink>
+                  {{ post.title }}
+                </h3>
+
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                  {{ post.excerpt }}
+                </p>
+
+                <div class="flex items-center justify-between">
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      v-for="tag in post.tags.slice(0, 2)"
+                      :key="tag"
+                      class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >
+                      {{ tag }}
+                    </span>
+                  </div>
+                  <span
+                    class="inline-flex items-center text-[#489f91] font-medium"
+                  >
+                    اقرأ المزيد
+                    <i class="pi pi-arrow-left ms-2 group-hover:translate-x-[-4px] transition-transform"></i>
+                  </span>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </RouterLink>
         </div>
       </div>
     </section>
@@ -275,76 +277,78 @@ onMounted(() => {
           v-else
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          <article
+          <RouterLink
             v-for="post in filteredPosts"
             :key="post.id"
-            class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow group"
+            :to="`/blog/${post.slug}`"
+            class="block bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:-translate-y-1 cursor-pointer"
           >
-            <div
-              class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden"
-            >
-              <img 
-                v-if="post.cover && post.cover !== '/images/placeholder.jpg'"
-                :src="post.cover"
-                :alt="post.title"
-                class="w-full h-full object-cover"
-                @error="$event.target.style.display = 'none'"
-              />
-              <div v-else class="text-center text-gray-500">
-                <i class="pi pi-image text-3xl mb-2"></i>
-                <p class="text-xs">صورة المقال</p>
-              </div>
-            </div>
-
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-xs text-gray-600 mb-3">
-                <span class="flex items-center">
-                  <i class="pi pi-calendar me-1"></i>
-                  {{ new Date(post.publishedDate).toLocaleDateString("ar-SA") }}
-                </span>
-                <span class="flex items-center">
-                  <i class="pi pi-clock me-1"></i>
-                  {{ post.readTime }}
-                </span>
+            <article>
+              <div
+                class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden"
+              >
+                <img 
+                  v-if="post.cover && post.cover !== '/images/placeholder.jpg'"
+                  :src="post.cover"
+                  :alt="post.title"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  @error="$event.target.style.display = 'none'"
+                />
+                <div v-else class="text-center text-gray-500">
+                  <i class="pi pi-image text-3xl mb-2"></i>
+                  <p class="text-xs">صورة المقال</p>
+                </div>
               </div>
 
-              <h3
-                class="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#489f91] transition-colors leading-tight"
-              >
-                {{ post.title }}
-              </h3>
+              <div class="p-6">
+                <div class="flex items-center gap-3 text-xs text-gray-600 mb-3">
+                  <span class="flex items-center">
+                    <i class="pi pi-calendar me-1"></i>
+                    {{ new Date(post.publishedDate).toLocaleDateString("ar-SA") }}
+                  </span>
+                  <span class="flex items-center">
+                    <i class="pi pi-clock me-1"></i>
+                    {{ post.readTime }}
+                  </span>
+                </div>
 
-              <p
-                class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3"
-              >
-                {{ post.excerpt }}
-              </p>
-
-              <div class="flex flex-wrap gap-1 mb-4">
-                <span
-                  v-for="tag in post.tags.slice(0, 2)"
-                  :key="tag"
-                  class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs"
+                <h3
+                  class="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#489f91] transition-colors leading-tight"
                 >
-                  {{ tag }}
-                </span>
-                <span
-                  v-if="post.tags.length > 2"
-                  class="px-2 py-1 text-gray-500 text-xs"
+                  {{ post.title }}
+                </h3>
+
+                <p
+                  class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3"
                 >
-                  +{{ post.tags.length - 2 }}
+                  {{ post.excerpt }}
+                </p>
+
+                <div class="flex flex-wrap gap-1 mb-4">
+                  <span
+                    v-for="tag in post.tags.slice(0, 2)"
+                    :key="tag"
+                    class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs"
+                  >
+                    {{ tag }}
+                  </span>
+                  <span
+                    v-if="post.tags.length > 2"
+                    class="px-2 py-1 text-gray-500 text-xs"
+                  >
+                    +{{ post.tags.length - 2 }}
+                  </span>
+                </div>
+
+                <span
+                  class="inline-flex items-center text-[#489f91] font-medium text-sm"
+                >
+                  اقرأ المقال
+                  <i class="pi pi-arrow-left ms-2 group-hover:translate-x-[-4px] transition-transform"></i>
                 </span>
               </div>
-
-              <RouterLink
-                :to="`/blog/${post.slug}`"
-                class="inline-flex items-center text-[#489f91] hover:text-[#489f91] font-medium text-sm"
-              >
-                اقرأ المقال
-                <i class="pi pi-arrow-left ms-2"></i>
-              </RouterLink>
-            </div>
-          </article>
+            </article>
+          </RouterLink>
         </div>
       </div>
     </section>
