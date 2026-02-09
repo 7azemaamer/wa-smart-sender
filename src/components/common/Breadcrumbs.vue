@@ -2,6 +2,14 @@
 import { RouterLink, useRoute } from "vue-router";
 import { computed, onMounted, onUnmounted } from "vue";
 
+// Props to override the last breadcrumb name (e.g., article title)
+const props = defineProps({
+  lastItemName: {
+    type: String,
+    default: null,
+  },
+});
+
 const route = useRoute();
 
 const breadcrumbs = computed(() => {
@@ -33,8 +41,23 @@ const breadcrumbs = computed(() => {
       terms: "شروط الاستخدام",
     };
 
+    // For the last item, use the prop if provided, otherwise decode the URI
+    let name = pathNames[path];
+    if (!name) {
+      if (isLast && props.lastItemName) {
+        name = props.lastItemName;
+      } else {
+        // Decode URI component to show Arabic text instead of %XX
+        try {
+          name = decodeURIComponent(path);
+        } catch {
+          name = path;
+        }
+      }
+    }
+
     breadcrumbs.push({
-      name: pathNames[path] || path,
+      name,
       path: currentPath,
       current: isLast,
     });

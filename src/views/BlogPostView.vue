@@ -144,7 +144,7 @@ onMounted(() => {
 
     <div class="py-4 md:py-12">
       <!-- Breadcrumbs -->
-      <Breadcrumbs />
+      <Breadcrumbs :last-item-name="post.title" />
 
       <div class="container mx-auto px-6 max-w-7xl mt-12">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
