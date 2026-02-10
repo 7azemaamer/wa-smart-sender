@@ -1,5 +1,8 @@
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:1337/api";
+const BACKEND_API_BASE_URL =
+  import.meta.env.VITE_BACKEND_API_BASE_URL ||
+  "https://api.wsmartsender.com/api/v1";
 const IMG_BASE_URL =
   import.meta.env.VITE_APP_IMG_URL || "http://localhost:1337";
 class ApiService {
@@ -13,6 +16,20 @@ class ApiService {
       return data;
     } catch (error) {
       console.error("API Error:", error);
+      throw error;
+    }
+  }
+
+  async getBackend(endpoint) {
+    try {
+      const response = await fetch(`${BACKEND_API_BASE_URL}${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Backend API Error:", error);
       throw error;
     }
   }
@@ -38,20 +55,29 @@ class ApiService {
 
   // Guides API
   async getGuides() {
-    return this.get("/guides?populate=*&sort[0]=order:asc");
+    return this.get("/guides?populate=*&sort[0]=order:desc");
   }
 
   async getGuide(slug) {
-    return this.get(`/guides?filters[slug][$eq]=${slug}&populate=*`);
+    return this.get(
+      `/guides?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`
+    );
   }
 
   // Video Guides API
   async getVideoGuides() {
-    return this.get("/video-guides?populate=*&sort[0]=order:asc");
+    return this.get("/video-guides?populate=*&sort[0]=order:desc");
   }
 
   async getVideoGuide(slug) {
-    return this.get(`/video-guides?filters[slug][$eq]=${slug}&populate=*`);
+    return this.get(
+      `/video-guides?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`
+    );
+  }
+
+  // Public backend plans API
+  async getPublicPlans() {
+    return this.getBackend("/plans/all");
   }
 
   // Authors API
@@ -149,7 +175,8 @@ class ApiService {
     const data = guide.attributes || guide;
 
     return {
-      id: guide.id,
+      id: guide.id || data.id || data.documentId,
+      documentId: guide.documentId || data.documentId,
       title: data.title,
       description: data.description,
       icon: data.icon || "pi pi-book",

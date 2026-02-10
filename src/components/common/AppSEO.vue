@@ -1,5 +1,6 @@
 <script setup>
 import { useHead } from "@vueuse/head";
+import { computed } from "vue";
 
 const props = defineProps({
   title: {
@@ -36,18 +37,30 @@ const props = defineProps({
   },
 });
 
-const fullTitle = props.title.includes("WA Smart Sender")
-  ? props.title
-  : `${props.title} | WA Smart Sender`;
-const canonicalUrl =
-  props.canonical ||
-  (typeof window !== "undefined" ? window.location.href : "");
-const imageUrl = props.image.startsWith("http")
-  ? props.image
-  : `https://wsmartsender.com${props.image}`;
+const fullTitle = computed(() =>
+  props.title.includes("WA Smart Sender")
+    ? props.title
+    : `${props.title} | WA Smart Sender`
+);
 
-useHead({
-  title: fullTitle,
+const canonicalUrl = computed(() => {
+  if (props.canonical) {
+    return props.canonical.startsWith("http")
+      ? props.canonical
+      : `https://wsmartsender.com${props.canonical}`;
+  }
+
+  return typeof window !== "undefined" ? window.location.href : "";
+});
+
+const imageUrl = computed(() =>
+  props.image.startsWith("http")
+    ? props.image
+    : `https://wsmartsender.com${props.image}`
+);
+
+useHead(() => ({
+  title: fullTitle.value,
   htmlAttrs: {
     lang: props.lang,
     dir: props.dir,
@@ -59,7 +72,7 @@ useHead({
     },
     {
       property: "og:title",
-      content: fullTitle,
+      content: fullTitle.value,
     },
     {
       property: "og:description",
@@ -67,11 +80,11 @@ useHead({
     },
     {
       property: "og:image",
-      content: imageUrl,
+      content: imageUrl.value,
     },
     {
       property: "og:url",
-      content: canonicalUrl,
+      content: canonicalUrl.value,
     },
     {
       property: "og:type",
@@ -87,7 +100,7 @@ useHead({
     },
     {
       name: "twitter:title",
-      content: fullTitle,
+      content: fullTitle.value,
     },
     {
       name: "twitter:description",
@@ -95,15 +108,15 @@ useHead({
     },
     {
       name: "twitter:image",
-      content: imageUrl,
+      content: imageUrl.value,
     },
   ],
   link: [
-    ...(canonicalUrl
+    ...(canonicalUrl.value
       ? [
           {
             rel: "canonical",
-            href: canonicalUrl,
+            href: canonicalUrl.value,
           },
         ]
       : []),
@@ -118,7 +131,7 @@ useHead({
         ]
       : []),
   ],
-});
+}));
 </script>
 
 <template>

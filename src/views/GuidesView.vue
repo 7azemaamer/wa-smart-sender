@@ -106,12 +106,13 @@ onMounted(() => {
         </div>
 
         <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <article
+          <router-link
             v-for="guide in guides"
-            :key="guide.id"
-            class="bg-white rounded-xl shadow-lg border hover:shadow-2xl transition-shadow group"
+            :key="guide.id || guide.documentId || guide.slug"
+            :to="guide.slug ? `/guides/${guide.slug}` : '/guides'"
+            class="block bg-white rounded-xl shadow-lg border hover:shadow-2xl transition-shadow group"
           >
-            <div class="p-6">
+            <article class="h-full p-6">
               <div class="w-16 h-16 bg-green-50 rounded-lg flex items-center justify-center mb-4">
                 <i :class="guide.icon" class="text-2xl text-[#489f91]"></i>
               </div>
@@ -139,15 +140,12 @@ onMounted(() => {
                 </span>
               </div>
 
-              <router-link
-                :to="`/guides/${guide.slug}`"
-                class="inline-flex items-center text-[#489f91] hover:text-green-700 font-medium"
-              >
+              <div class="inline-flex items-center text-[#489f91] group-hover:text-green-700 font-medium">
                 ابدأ الدليل
                 <i class="pi pi-arrow-left ms-2"></i>
-              </router-link>
-            </div>
-          </article>
+              </div>
+            </article>
+          </router-link>
         </div>
       </div>
     </section>

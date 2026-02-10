@@ -28,6 +28,11 @@ const router = createRouter({
       component: () => import('@/views/GuidesView.vue')
     },
     {
+      path: '/guides/:slug',
+      name: 'guide-detail',
+      component: () => import('@/views/GuideDetailView.vue')
+    },
+    {
       path: '/templates',
       name: 'templates',
       component: () => import('@/views/TemplatesView.vue')
