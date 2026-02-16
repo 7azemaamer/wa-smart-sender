@@ -1,259 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://wsmartsender.com/</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/was</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/pricing</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/faq</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/blog</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/contact</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/compare</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/case-studies</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/guides</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/templates</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/privacy</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-
   <url>
     <loc>https://wsmartsender.com/terms</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-
   <url>
-    <loc>https://wsmartsender.com/guides/quick-start-account-browser-link</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/whatsapp-web-readiness-check</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/send-page-text-campaign-enterprise</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/excel-import-cleaning-variable-map</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/smart-variables-deep-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/condition-builder-practical</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/templates-operational-workflow</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/catalog-media-sending-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/reports-analysis-decision-making</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/blocked-numbers-full-management</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/auto-replies-keyword-rules-basic</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/menu-bot-dsl-complete-setup</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/welcome-fallback-cooldown-pro-setup</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/ai-auto-reply-optional-plan</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/groups-extract-invite-management</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/plans-billing-end-to-end</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/trial-and-plan-limits-behavior</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/anti-ban-send-strategy</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/troubleshooting-common-errors-playbook</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/daily-operations-sop-admin-support-sales</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/account-profile-security-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/multi-device-policy-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/admin-mod-access-control-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/pending-subscriptions-payment-flow-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/leads-data-hygiene-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/compare-page-plan-selection-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/templates-page-to-campaign-guide</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wsmartsender.com/guides/contact-support-request-guide</loc>
+    <loc>https://wsmartsender.com/guides/safe-upgrade-migration-guide</loc>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -265,29 +85,279 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://wsmartsender.com/guides/safe-upgrade-migration-guide</loc>
+    <loc>https://wsmartsender.com/guides/contact-support-request-guide</loc>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://wsmartsender.com/blog/whatsapp-bulk-safety-guide</loc>
+    <loc>https://wsmartsender.com/guides/templates-page-to-campaign-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/compare-page-plan-selection-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/leads-data-hygiene-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/pending-subscriptions-payment-flow-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/admin-mod-access-control-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/multi-device-policy-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/account-profile-security-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/daily-operations-sop-admin-support-sales</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/troubleshooting-common-errors-playbook</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/anti-ban-send-strategy</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/trial-and-plan-limits-behavior</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/plans-billing-end-to-end</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/groups-extract-invite-management</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/ai-auto-reply-optional-plan</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/welcome-fallback-cooldown-pro-setup</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/menu-bot-dsl-complete-setup</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/auto-replies-keyword-rules-basic</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/blocked-numbers-full-management</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/reports-analysis-decision-making</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/catalog-media-sending-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/templates-operational-workflow</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/condition-builder-practical</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/smart-variables-deep-guide</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/excel-import-cleaning-variable-map</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/send-page-text-campaign-enterprise</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/whatsapp-web-readiness-check</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/guides/quick-start-account-browser-link</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/أفضل-5-أدوات-شات-بوت-واتساب-عربية-للشركات-الصغيرة-exogp</loc>
+    <lastmod>2026-02-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/كيف-تصنع-بوت-رد-تلقائي-على-واتساب-لمتجرك-الإلكتروني-ev8oi</loc>
+    <lastmod>2026-02-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/أفضل-أوقات-إرسال-رسائل-واتساب-التسويقية-في-السعودية-etkg1</loc>
+    <lastmod>2026-02-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/لماذا-واتساب-هو-أقوى-قناة-تسويقية-في-الخليج؟-zhjkw</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/7-استراتيجيات-لزيادة-مبيعات-متجرك-عبر-واتساب-zez76</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/كيف-تبني-حملة-تسويقية-ناجحة-على-واتساب-خطوة-بخطوة-zdgrh</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/خدمة-العملاء-عبر-الواتساب-في-المتاجر-السعودية-vzh81</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/مقارنة-بين-أفضل-إضافات-واتساب-ويب-لمتصفح-كروم-2026-jx237</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/طريقة-إرسال-1000-رسالة-واتساب-في-يوم-واحد-بأمان-jz75p</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/التسويق-عبر-واتساب-في-السعودية-الدليل-الكامل-لعام-2026-k17aq</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/كيف-ترسل-رسائل-واتساب-بالجملة-بدون-حظر-دليل-شامل-weulk</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/أفضل-10-أدوات-إرسال-رسائل-واتساب-جماعية-للمتاجر-السعودية-wghsa</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/أفضل-إضافة-كروم-لإرسال-رسائل-واتساب-جماعية-في-2026-wbyn2</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/المرسل-الذكي-ajcep</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wsmartsender.com/blog/التسويق-الرقمي-للمشاريع-الصغيرة-8sykl</loc>
     <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://wsmartsender.com/blog/arabic-templates-auto-replies</loc>
-    <lastmod>2026-02-10</lastmod>
+    <loc>https://wsmartsender.com/blog/ارسال-آلاف-الرسائل-واتساب-drph4</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://wsmartsender.com/blog/was-reports-best-practices</loc>
-    <lastmod>2026-02-10</lastmod>
+    <loc>https://wsmartsender.com/blog/تسويق-المتاجر-الإلكترونية-واتساب-can06</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
+  <url>
+    <loc>https://wsmartsender.com/blog/مستقبل-التسويق-عبر-الواتساب-9lbvw</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
